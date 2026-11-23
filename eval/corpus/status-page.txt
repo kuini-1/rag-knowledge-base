@@ -1,0 +1,13 @@
+LARKSPUR STATUS PAGE - HOW IT WORKS
+
+The status page at status.larkspur.example shows the current health of every region and service.
+
+Components are shown in one of four states: Operational, Degraded performance, Partial outage, and Major outage. A component is marked Degraded when its error rate is above 1% or its median latency is more than twice the usual value for five minutes.
+
+Incidents are posted within 10 minutes of being confirmed by the on-call engineer. Updates follow at least every 30 minutes until the incident is resolved. A written incident report is published within five business days for any incident that lasted longer than 30 minutes or affected more than one region.
+
+You can subscribe to updates by email, SMS, RSS, or webhook. Webhook subscribers receive a JSON payload for every incident update, signed with an HMAC-SHA256 signature in the X-Larkspur-Signature header.
+
+Scheduled maintenance is announced on the status page at least 72 hours in advance. Maintenance that may cause downtime is scheduled between 01:00 and 05:00 local time for the affected region.
+
+The status page is hosted on a separate provider so that it stays available during a Larkspur outage.
