@@ -1,0 +1,15 @@
+# The api image needs go.mod/go.sum, cmd/, internal/ and eval/.
+# embedder/ and web/ are built from their own folders, with their own ignore files.
+.git
+.github
+bin
+data
+docs
+embedder
+web
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+.env
+.env.*

@@ -1,0 +1,14 @@
+# npm ci runs inside the image. The host's node_modules (built for macOS) and
+# local Next.js output must not be copied over it by `COPY . .`.
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+.DS_Store
+
+# Local env files and generated agent notes stay out of the image.
+.env*
+AGENTS.md
+CLAUDE.md

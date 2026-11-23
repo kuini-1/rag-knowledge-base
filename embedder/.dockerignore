@@ -1,0 +1,6 @@
+# Dependencies are installed inside the image; the local virtualenv is not needed.
+.venv
+__pycache__
+*.pyc
+.DS_Store
+.env
