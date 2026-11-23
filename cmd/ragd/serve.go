@@ -21,6 +21,7 @@ import (
 	"github.com/kuini-1/rag-knowledge-base/internal/chunk"
 	"github.com/kuini-1/rag-knowledge-base/internal/embed"
 	"github.com/kuini-1/rag-knowledge-base/internal/eval"
+	"github.com/kuini-1/rag-knowledge-base/internal/localllm"
 	"github.com/kuini-1/rag-knowledge-base/internal/retrieve"
 	"github.com/kuini-1/rag-knowledge-base/internal/server"
 	"github.com/kuini-1/rag-knowledge-base/internal/store"
@@ -62,7 +63,22 @@ func (c *common) answerer() *answer.Answerer {
 		return &answer.Answerer{Cfg: cfg}
 	}
 	// Credentials come from ANTHROPIC_API_KEY (or an `ant auth login` profile).
-	return &answer.Answerer{LLM: answer.SDKClient{Client: anthropic.NewClient()}, Cfg: cfg}
+	// Models named "ollama:<name>" run locally instead (see internal/localllm).
+	return &answer.Answerer{LLM: router{local: &localllm.Client{BaseURL: os.Getenv("OLLAMA_HOST")}, claude: answer.SDKClient{Client: anthropic.NewClient()}}, Cfg: cfg}
+}
+
+// router sends each call to a local model or to Claude by the model's name,
+// so answers and the eval's judge can each be either.
+type router struct {
+	local  answer.MessageClient
+	claude answer.MessageClient
+}
+
+func (r router) New(ctx context.Context, p anthropic.BetaMessageNewParams) (*anthropic.BetaMessage, error) {
+	if strings.HasPrefix(string(p.Model), localllm.Prefix) {
+		return r.local.New(ctx, p)
+	}
+	return r.claude.New(ctx, p)
 }
 
 func cmdServe(ctx context.Context, args []string) error {
@@ -179,9 +195,9 @@ func cmdEval(ctx context.Context, args []string) error {
 	var f evalFlags
 	f.register(fs)
 	var c common
-	fs.StringVar(&c.model, "model", env("RAG_MODEL", answer.DefaultConfig.Model), "Claude model for answers")
+	fs.StringVar(&c.model, "model", env("RAG_MODEL", answer.DefaultConfig.Model), "model for answers: a Claude model, or ollama:<name> for a local one")
 	fs.StringVar(&c.effort, "effort", env("RAG_EFFORT", answer.DefaultConfig.Effort), "effort for answers")
-	judge := fs.String("judge-model", env("RAG_JUDGE_MODEL", answer.DefaultConfig.Model), "Claude model that grades answers")
+	judge := fs.String("judge-model", env("RAG_JUDGE_MODEL", answer.DefaultConfig.Model), "model that grades answers: a Claude model, or ollama:<name>")
 	chunking := fs.String("chunking", chunk.Default.Name(), "chunking config")
 	limit := fs.Int("limit", 0, "only run the first N questions (0 = all)")
 	fs.Parse(args)
@@ -208,7 +224,11 @@ func cmdEval(ctx context.Context, args []string) error {
 		return err
 	}
 	a := c.answerer()
-	fmt.Printf("answering %d questions with %s (this calls the Claude API and costs money)\n", len(qs), c.model)
+	if strings.HasPrefix(c.model, localllm.Prefix) && strings.HasPrefix(*judge, localllm.Prefix) {
+		fmt.Printf("answering %d questions with %s, graded by %s (local models, no API calls)\n", len(qs), c.model, *judge)
+	} else {
+		fmt.Printf("answering %d questions with %s, graded by %s (this calls the Claude API and costs money)\n", len(qs), c.model, *judge)
+	}
 	rep, err := eval.Answers(ctx, r, a, a.LLM, *judge, qs, retrieve.DefaultOptions, f.out,
 		func(format string, x ...any) { fmt.Printf(format+"\n", x...) })
 	if err != nil {
