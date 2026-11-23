@@ -1,0 +1,1726 @@
+{
+  "date": "2026-11-23",
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "rerank_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "documents": 15,
+  "questions": 64,
+  "chunking": [
+    {
+      "label": "fixed-64-0",
+      "chunking": {
+        "strategy": "fixed",
+        "size": 64,
+        "overlap": 0,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 104,
+      "avg_chunk_tokens": 59.60576923076923,
+      "hit_at": {
+        "1": 0.625,
+        "10": 0.828125,
+        "3": 0.75,
+        "5": 0.765625
+      },
+      "mrr": 0.6896205357142857,
+      "context_tokens": 315.359375,
+      "hit1_by_tag": {
+        "context": 0,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.625,
+        "pdf": 0.6666666666666666,
+        "plain": 0.7857142857142857,
+        "table": 0.2222222222222222,
+        "txt": 0.5
+      },
+      "latency_p50_ms": 78.077,
+      "misses": [
+        {
+          "id": "q01",
+          "question": "How much does the Team plan cost per month?",
+          "expected": [
+            "pricing.md: Team | $49 | 500 GB"
+          ],
+          "tags": [
+            "table"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Overage rates: $0.04 per GB on Team and $0.03 per GB on Business. Egress between two Larkspur regions is billed at half the internet egress rate. - Additional team seats cost …",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing \u003e Legacy plans: Pro plan, which cost $79 per month and included 1 TB of storage. The Pro plan is closed to new customers. Legacy Pro customers keep their price until they chang…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing \u003e Plans at a glance: days without any API activity. Overage rates When you use more than your plan includes, the extra usage is billed at the end of the month. - Additional storage …"
+          ]
+        },
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: for 30 days. During that time, an Owner can restore the bucket from the console. After 30 days, the bucket and all of its contents are permanently erased. Accou…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: so that the organization can be reopened by contacting support. After 60 days, all buckets, volumes, and snapshots are permanently deleted, and the deletion is …",
+            "#3 data-retention.docx \u003e Data Retention and Deletion Policy: Data Retention and Deletion Policy Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you delete…"
+          ]
+        },
+        {
+          "id": "q06",
+          "question": "How long is the free trial and which plan does it give?",
+          "expected": [
+            "pricing.md: 21-day trial of the Business plan"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Legacy plans: Pro plan, which cost $79 per month and included 1 TB of storage. The Pro plan is closed to new customers. Legacy Pro customers keep their price until they chang…",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing \u003e Free trial: trial of the Business plan with no credit card required. At the end of the trial, the organization moves to Starter unless a payment method has been added.",
+            "#3 billing-faq.md \u003e Billing FAQ \u003e Do you charge VAT or sales tax?: tax certificate. Can I get a refund? Plan fees paid annually can be refunded in full within 14 days of purchase if the account has used less than 10 GB of egres…"
+          ]
+        },
+        {
+          "id": "q15",
+          "question": "What is the request-per-minute limit on the Team plan?",
+          "expected": [
+            "api-rate-limits.md: Team | 1,200 | 200 | 16"
+          ],
+          "tags": [
+            "table",
+            "distractor"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.4 (2025-11-20): without honoring `Retry-After`. v2.3 (2025-06-10) - Raised the Team plan rate limit from 600 to 1,200 requests per minute. - Presigned URLs can now be valid for…",
+            "#2 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: exceed the per-minute rate for a few seconds. It refills at the plan's per-minute rate. Response headers Every API response carries three headers so clients can…",
+            "#3 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…"
+          ]
+        },
+        {
+          "id": "q16",
+          "question": "Which header tells me how many requests I have left?",
+          "expected": [
+            "api-rate-limits.md: requests left in the current window"
+          ],
+          "tags": [
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 error-codes.md \u003e Error Codes \u003e Service: out. | Retry the request; it is safe for idempotent operations. | Request IDs Each response includes an `X-Larkspur-Request-Id` header. Include it when you cont…",
+            "#2 changelog.md \u003e API Changelog \u003e v2.5 (2026-04-02): to prevent removing an object that changed. - The `/v2/usage` endpoint now reports egress per destination region. v2.4 (2025-11-20) - Raised the Business plan r…",
+            "#3 changelog.md \u003e API Changelog: API Changelog Changes to the Larkspur API, newest first. v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now r…"
+          ]
+        },
+        {
+          "id": "q19",
+          "question": "Do health checks count toward the rate limit?",
+          "expected": [
+            "api-rate-limits.md: do not count toward the limit"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits \u003e Raising your limits: Raising your limits Business customers can request a higher limit from the console under Settings, then Quotas. Requests are reviewed within two business days. …",
+            "#2 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#3 sla.md \u003e Service Level Agreement \u003e Service credits: that month's plan fee for the affected region. | Monthly availability | Credit | | Below the commitment but at least 99.0% | 10% | | Below 99.0% but at least 95…"
+          ]
+        },
+        {
+          "id": "q20",
+          "question": "How many concurrent uploads can a Business organization run?",
+          "expected": [
+            "api-rate-limits.md: Business | 6,000 | 1,000 | 64"
+          ],
+          "tags": [
+            "table"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 backups.md \u003e Backups and Recovery \u003e Snapshot schedule: and Enterprise customers can add an hourly schedule for any volume. Retention How long snapshots are kept depends on the plan: - Team: 7 days - Business: 30 day…",
+            "#2 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#3 onboarding.md \u003e Getting Started \u003e 4. Create a bucket: for new accounts. 5. Upload a file `lark cp ./report.pdf lark://my-first-bucket/reports/` Files above 100 MB are uploaded in parts automatically, and an interru…"
+          ]
+        },
+        {
+          "id": "q21",
+          "question": "What does LS-3012 mean?",
+          "expected": [
+            "error-codes.md: LS-3012 | 409 | The bucket name is already taken in this region."
+          ],
+          "tags": [
+            "identifier",
+            "table"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.5 (2026-04-02): to prevent removing an object that changed. - The `/v2/usage` endpoint now reports egress per destination region. v2.4 (2025-11-20) - Raised the Business plan r…",
+            "#2 error-codes.md \u003e Error Codes \u003e Authentication: | Code | HTTP | Meaning | What to do | | LS-1001 | 401 | The API key is missing or malformed. | Send the key in the Authorization header as `Bearer \u003ckey\u003e`. | | …",
+            "#3 error-codes.md \u003e Error Codes \u003e Authentication: a new key in the console. | | LS-1007 | 403 | The key is valid but lacks the scope for this action. | Add the scope to the key or use a different key. | Validat…"
+          ]
+        },
+        {
+          "id": "q28",
+          "question": "Can I turn off MFA for admins?",
+          "expected": [
+            "security.md: it cannot be turned off for them"
+          ],
+          "tags": [
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 onboarding.md \u003e Getting Started \u003e 2. Install the CLI: `LARK_NO_UPDATE_CHECK=1` to turn this off. 3. Log in Run `lark login`. It opens a browser window, and after you approve, the CLI stores a short-lived token in y…",
+            "#2 security.md \u003e Security Overview \u003e Encryption: customer-managed keys, revoking the key makes the data unreadable within five minutes. Identity and access Organizations can require multi-factor authentication…",
+            "#3 acceptable-use.md \u003e Acceptable Use Policy \u003e Public buckets: is not being used as a general-purpose CDN for a third party. Enforcement For most violations we email the organization Owners and give them 72 hours to fix the…"
+          ]
+        },
+        {
+          "id": "q30",
+          "question": "Can I store credit card numbers on Larkspur?",
+          "expected": [
+            "security.md: The platform is not currently certified for PCI DSS"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 security.md \u003e Security Overview \u003e Compliance: it should not be used to store full payment card numbers. Reporting a vulnerability Report security issues to security@larkspur.example. We acknowledge reports …",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Logs: kept for as long as the customer chooses. Larkspur's own request logs, which are used for support and security investigations, are retained for 400 days and the…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing: Larkspur Cloud Pricing Larkspur Cloud bills monthly in arrears. Every plan includes object storage, block volumes, and the managed queue service. Prices below a…"
+          ]
+        },
+        {
+          "id": "q38",
+          "question": "Which region is used if I don't pass --region?",
+          "expected": [
+            "onboarding.md: which is us-virginia-1 for new accounts"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 regions.md \u003e Regions \u003e Choosing a region: either works for most applications in the area. The us-oregon-2 region replaced us-oregon-1, which was retired in 2023. Buckets that lived in us-oregon-1 were m…",
+            "#2 onboarding.md \u003e Getting Started \u003e 3. Log in: it in the `LARK_API_KEY` environment variable. 4. Create a bucket Buckets hold your objects. Create one with: `lark bucket create my-first-bucket --region eu-fr…",
+            "#3 regions.md \u003e Regions: Regions Larkspur Cloud runs in seven regions. Each region is fully independent: data written in a region stays there unless you set up replication. | Region cod…"
+          ]
+        },
+        {
+          "id": "q50",
+          "question": "When is an unpaid organization suspended?",
+          "expected": [
+            "billing-faq.md: If the invoice is still unpaid 30 days after its due date, the organization is suspended"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 billing-faq.md \u003e Billing FAQ \u003e What happens if a payment fails?: organization is suspended: data stays intact, but API requests fail until the balance is paid. How do I cancel? Owners can cancel from the console under Setting…",
+            "#2 acceptable-use.md \u003e Acceptable Use Policy \u003e Public buckets: is not being used as a general-purpose CDN for a third party. Enforcement For most violations we email the organization Owners and give them 72 hours to fix the…",
+            "#3 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: so that the organization can be reopened by contacting support. After 60 days, all buckets, volumes, and snapshots are permanently deleted, and the deletion is …"
+          ]
+        },
+        {
+          "id": "q53",
+          "question": "Am I allowed to mine crypto on Larkspur?",
+          "expected": [
+            "acceptable-use.md: mine cryptocurrency, including through compute attached to storage events"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 acceptable-use.md \u003e Acceptable Use Policy: Acceptable Use Policy You are responsible for everything that runs in your organization, including what your users and customers store or send through it. Prohi…",
+            "#2 security.md \u003e Security Overview: Security Overview This page summarizes how Larkspur Cloud protects customer data. Detailed reports are available to customers under NDA from the trust portal. E…",
+            "#3 security.md \u003e Security Overview \u003e Audit logs: days and can be streamed to an external SIEM over syslog or HTTPS. Compliance Larkspur Cloud holds a SOC 2 Type II report, renewed every year, and ISO/IEC 27001…"
+          ]
+        },
+        {
+          "id": "q56",
+          "question": "What caused the ap-bangkok-1 outage?",
+          "expected": [
+            "incident-report-2025-08.pdf: used a TLS certificate that expired at 02:13 UTC"
+          ],
+          "tags": [
+            "pdf"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage: Incident Report: ap-bangkok-1 Object Storage Outage Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:1…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: LS-5031. No data was lost, and no other region was affected. Impact Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had en…",
+            "#3 regions.md \u003e Regions: | ap-bangkok-1 | Bangkok, Thailand | 2025 | 2 | | ap-tokyo-1 | Tokyo, Japan | 2024 | 3 | Choosing a region Pick the region closest to your users. Inside Southea…"
+          ]
+        },
+        {
+          "id": "q64",
+          "question": "Compare the Team and Business uptime commitments.",
+          "expected": [
+            "sla.md: This plan commits to 99.9% monthly availability",
+            "sla.md: This plan commits to 99.95% monthly availability"
+          ],
+          "tags": [
+            "multi",
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business | 6,000 | 1,000 | 64 | | Enterprise | Negotiated | Negotiated | Negotiated | The burst allowance…",
+            "#2 sla.md \u003e Service Level Agreement \u003e Uptime commitments \u003e Team: month before credits apply. Business This plan commits to 99.95% monthly availability, which is roughly 22 minutes of downtime in a 30-day month. It also covers…",
+            "#3 sla.md \u003e Service Level Agreement: Service Level Agreement This agreement describes the availability Larkspur Cloud commits to and the credits you receive when we miss it. It applies to paid plan…"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fixed-128-0",
+      "chunking": {
+        "strategy": "fixed",
+        "size": 128,
+        "overlap": 0,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 55,
+      "avg_chunk_tokens": 112.50909090909092,
+      "hit_at": {
+        "1": 0.609375,
+        "10": 0.90625,
+        "3": 0.828125,
+        "5": 0.875
+      },
+      "mrr": 0.7252604166666667,
+      "context_tokens": 604.921875,
+      "hit1_by_tag": {
+        "context": 0,
+        "distractor": 0.3333333333333333,
+        "docx": 0.75,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.875,
+        "pdf": 0.3333333333333333,
+        "plain": 0.75,
+        "table": 0.5555555555555556,
+        "txt": 0.5
+      },
+      "latency_p50_ms": 110.588,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: for 30 days. During that time, an Owner can restore the bucket from the console. After 30 days, the bucket and all of its contents are permanently erased. Accou…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Logs: kept for as long as the customer chooses. Larkspur's own request logs, which are used for support and security investigations, are retained for 400 days and the…",
+            "#3 data-retention.docx \u003e Data Retention and Deletion Policy: Data Retention and Deletion Policy Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you delete…"
+          ]
+        },
+        {
+          "id": "q05",
+          "question": "How much did the old Pro plan cost?",
+          "expected": [
+            "pricing.md: which cost $79 per month"
+          ],
+          "tags": [
+            "distractor"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Legacy plans: $79 per month and included 1 TB of storage. The Pro plan is closed to new customers. Legacy Pro customers keep their price until they change plans, after which …",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing \u003e Annual billing: The discount applies to the plan fee only, not to overage. Annual plans renew automatically unless cancelled at least 14 days before the renewal date. Enterpris…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing \u003e Plans at a glance: 10 TB | 50 | Priority | | Enterprise | Custom | Custom | Custom | Unlimited | Premier | The Starter plan is meant for evaluation and hobby projects. Workloads o…"
+          ]
+        },
+        {
+          "id": "q19",
+          "question": "Do health checks count toward the rate limit?",
+          "expected": [
+            "api-rate-limits.md: do not count toward the limit"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#2 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: exceed the per-minute rate for a few seconds. It refills at the plan's per-minute rate. Response headers Every API response carries three headers so clients can…",
+            "#3 sla.md \u003e Service Level Agreement \u003e Service credits: plan fee for the affected region. | Monthly availability | Credit | | Below the commitment but at least 99.0% | 10% | | Below 99.0% but at least 95.0% | 25% | |…"
+          ]
+        },
+        {
+          "id": "q28",
+          "question": "Can I turn off MFA for admins?",
+          "expected": [
+            "security.md: it cannot be turned off for them"
+          ],
+          "tags": [
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 acceptable-use.md \u003e Acceptable Use Policy: Acceptable Use Policy You are responsible for everything that runs in your organization, including what your users and customers store or send through it. Prohi…",
+            "#2 security.md \u003e Security Overview \u003e Identity and access: for them. Single sign-on with SAML 2.0 is available on Business and Enterprise. SCIM provisioning, which creates and removes members automatically from your ide…",
+            "#3 acceptable-use.md \u003e Acceptable Use Policy \u003e Prohibited activities: systems you do not own or have permission to test. Public buckets Public buckets are allowed for websites, downloads, and open datasets. A public bucket that se…"
+          ]
+        },
+        {
+          "id": "q31",
+          "question": "What is the maximum bug bounty payout?",
+          "expected": [
+            "security.md: pays up to $10,000 for critical findings"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits \u003e When you hit the limit: should back off exponentially and add jitter; the official SDKs do this automatically and retry up to five times. Repeatedly ignoring `Retry-After` for more tha…",
+            "#2 changelog.md \u003e API Changelog \u003e v2.4 (2025-11-20): without honoring `Retry-After`. v2.3 (2025-06-10) - Raised the Team plan rate limit from 600 to 1,200 requests per minute. - Presigned URLs can now be valid for…",
+            "#3 sla.md \u003e Service Level Agreement \u003e Service credits: plan fee for the affected region. | Monthly availability | Credit | | Below the commitment but at least 99.0% | 10% | | Below 99.0% but at least 95.0% | 25% | |…"
+          ]
+        },
+        {
+          "id": "q38",
+          "question": "Which region is used if I don't pass --region?",
+          "expected": [
+            "onboarding.md: which is us-virginia-1 for new accounts"
+          ],
+          "tags": [],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 regions.md \u003e Regions: Regions Larkspur Cloud runs in seven regions. Each region is fully independent: data written in a region stays there unless you set up replication. | Region cod…",
+            "#2 regions.md \u003e Regions \u003e Feature availability: managed queue service is not yet available in ap-bangkok-1. - Customer-managed keys are available in every region except eu-dublin-1, where support is planned. …",
+            "#3 regions.md \u003e Regions: ap-bangkok-1 | Bangkok, Thailand | 2025 | 2 | | ap-tokyo-1 | Tokyo, Japan | 2024 | 3 | Choosing a region Pick the region closest to your users. Inside Southeast…"
+          ]
+        },
+        {
+          "id": "q48",
+          "question": "What was the Business rate limit before v2.4?",
+          "expected": [
+            "changelog.md: Raised the Business plan rate limit from 4,000 to 6,000 requests per minute"
+          ],
+          "tags": [
+            "distractor"
+          ],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.4 (2025-11-20): without honoring `Retry-After`. v2.3 (2025-06-10) - Raised the Team plan rate limit from 600 to 1,200 requests per minute. - Presigned URLs can now be valid for…",
+            "#2 api-rate-limits.md \u003e API Rate Limits \u003e When you hit the limit: should back off exponentially and add jitter; the official SDKs do this automatically and retry up to five times. Repeatedly ignoring `Retry-After` for more tha…",
+            "#3 sla.md \u003e Service Level Agreement \u003e Uptime commitments \u003e Team: before credits apply. Business This plan commits to 99.95% monthly availability, which is roughly 22 minutes of downtime in a 30-day month. It also covers the m…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage: Incident Report: ap-bangkok-1 Object Storage Outage Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:1…",
+            "#2 support.md \u003e Support \u003e First response times: | P4 | 3 business days | 2 business days | 1 business day | Languages Support is available in English on every tier. Priority and Premier also cover Japanese an…",
+            "#3 status-page.txt \u003e LARKSPUR STATUS PAGE - HOW IT WORKS: minutes until the incident is resolved. A written incident report is published within five business days for any incident that lasted longer than 30 minutes or …"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fixed-256-0",
+      "chunking": {
+        "strategy": "fixed",
+        "size": 256,
+        "overlap": 0,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 31,
+      "avg_chunk_tokens": 199.5483870967742,
+      "hit_at": {
+        "1": 0.65625,
+        "10": 0.953125,
+        "3": 0.828125,
+        "5": 0.921875
+      },
+      "mrr": 0.7621279761904762,
+      "context_tokens": 1031.953125,
+      "hit1_by_tag": {
+        "context": 0.4,
+        "distractor": 0.3333333333333333,
+        "docx": 0.75,
+        "identifier": 0.4444444444444444,
+        "multi": 1,
+        "paraphrase": 0.75,
+        "pdf": 0.6666666666666666,
+        "plain": 0.75,
+        "table": 0.5555555555555556,
+        "txt": 1
+      },
+      "latency_p50_ms": 97.236,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy: Data Retention and Deletion Policy Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you delete…",
+            "#2 error-codes.md \u003e Error Codes \u003e Validation: LS-3020 | 413 | The object is larger than 5 TB, the maximum object size. | Split the object, or use multipart upload for anything above 100 MB. | Limits and quo…",
+            "#3 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Logs: for as long as the customer chooses. Larkspur's own request logs, which are used for support and security investigations, are retained for 400 days and then del…"
+          ]
+        },
+        {
+          "id": "q05",
+          "question": "How much did the old Pro plan cost?",
+          "expected": [
+            "pricing.md: which cost $79 per month"
+          ],
+          "tags": [
+            "distractor"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Legacy plans: month and included 1 TB of storage. The Pro plan is closed to new customers. Legacy Pro customers keep their price until they change plans, after which the curr…",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing \u003e Overage rates: on Team and $0.03 per GB on Business. Egress between two Larkspur regions is billed at half the internet egress rate. - Additional team seats cost $9 per seat p…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing: Larkspur Cloud Pricing Larkspur Cloud bills monthly in arrears. Every plan includes object storage, block volumes, and the managed queue service. Prices below a…"
+          ]
+        },
+        {
+          "id": "q07",
+          "question": "How is traffic between two Larkspur regions billed?",
+          "expected": [
+            "pricing.md: Egress between two Larkspur regions is billed at half the internet egress rate"
+          ],
+          "tags": [],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 regions.md \u003e Regions: Regions Larkspur Cloud runs in seven regions. Each region is fully independent: data written in a region stays there unless you set up replication. | Region cod…",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing: Larkspur Cloud Pricing Larkspur Cloud bills monthly in arrears. Every plan includes object storage, block volumes, and the managed queue service. Prices below a…",
+            "#3 status-page.txt \u003e LARKSPUR STATUS PAGE - HOW IT WORKS: LARKSPUR STATUS PAGE - HOW IT WORKS The status page at status.larkspur.example shows the current health of every region and service. Components are shown in one…"
+          ]
+        },
+        {
+          "id": "q31",
+          "question": "What is the maximum bug bounty payout?",
+          "expected": [
+            "security.md: pays up to $10,000 for critical findings"
+          ],
+          "tags": [],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits \u003e When you hit the limit: should back off exponentially and add jitter; the official SDKs do this automatically and retry up to five times. Repeatedly ignoring `Retry-After` for more tha…",
+            "#2 error-codes.md \u003e Error Codes \u003e Validation: LS-3020 | 413 | The object is larger than 5 TB, the maximum object size. | Split the object, or use multipart upload for anything above 100 MB. | Limits and quo…",
+            "#3 sla.md \u003e Service Level Agreement \u003e Service credits: plan fee for the affected region. | Monthly availability | Credit | | Below the commitment but at least 99.0% | 10% | | Below 99.0% but at least 95.0% | 25% | |…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage: Incident Report: ap-bangkok-1 Object Storage Outage Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:1…",
+            "#2 support.md \u003e Support \u003e First response times: P4 | 3 business days | 2 business days | 1 business day | Languages Support is available in English on every tier. Priority and Premier also cover Japanese and …",
+            "#3 billing-faq.md \u003e Billing FAQ: Billing FAQ When am I charged? Invoices are issued on the first day of each month for the previous month's usage and plan fee. Payment is due within 15 days of …"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fixed-512-0",
+      "chunking": {
+        "strategy": "fixed",
+        "size": 512,
+        "overlap": 0,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 16,
+      "avg_chunk_tokens": 386.5,
+      "hit_at": {
+        "1": 0.71875,
+        "10": 0.96875,
+        "3": 0.875,
+        "5": 0.921875
+      },
+      "mrr": 0.8097842261904762,
+      "context_tokens": 1945.78125,
+      "hit1_by_tag": {
+        "context": 0.4,
+        "distractor": 0.3333333333333333,
+        "docx": 1,
+        "identifier": 0.6666666666666666,
+        "multi": 1,
+        "paraphrase": 0.625,
+        "pdf": 1,
+        "plain": 0.75,
+        "table": 0.8888888888888888,
+        "txt": 1
+      },
+      "latency_p50_ms": 137.049,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy: Data Retention and Deletion Policy Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you delete…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage: Incident Report: ap-bangkok-1 Object Storage Outage Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:1…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing \u003e Legacy plans: and included 1 TB of storage. The Pro plan is closed to new customers. Legacy Pro customers keep their price until they change plans, after which the current pl…"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#2 changelog.md \u003e API Changelog: API Changelog Changes to the Larkspur API, newest first. v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now r…",
+            "#3 data-retention.docx \u003e Data Retention and Deletion Policy: Data Retention and Deletion Policy Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you delete…"
+          ]
+        },
+        {
+          "id": "q29",
+          "question": "Which plan do I need for SCIM provisioning?",
+          "expected": [
+            "security.md: is available on Enterprise only"
+          ],
+          "tags": [],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 sla.md \u003e Service Level Agreement: Service Level Agreement This agreement describes the availability Larkspur Cloud commits to and the credits you receive when we miss it. It applies to paid plan…",
+            "#2 onboarding.md \u003e Getting Started: Getting Started This guide takes you from a new account to your first uploaded file in about ten minutes. 1. Create an organization Sign up at the console and c…",
+            "#3 support.md \u003e Support: Support Your plan determines how fast we respond and how you can reach us. Support tiers | Tier | Plans | Channels | Hours | | Community | Starter | Forum | Bes…"
+          ]
+        },
+        {
+          "id": "q31",
+          "question": "What is the maximum bug bounty payout?",
+          "expected": [
+            "security.md: pays up to $10,000 for critical findings"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#2 sla.md \u003e Service Level Agreement: Service Level Agreement This agreement describes the availability Larkspur Cloud commits to and the credits you receive when we miss it. It applies to paid plan…",
+            "#3 changelog.md \u003e API Changelog: API Changelog Changes to the Larkspur API, newest first. v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now r…"
+          ]
+        },
+        {
+          "id": "q38",
+          "question": "Which region is used if I don't pass --region?",
+          "expected": [
+            "onboarding.md: which is us-virginia-1 for new accounts"
+          ],
+          "tags": [],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 regions.md \u003e Regions: Regions Larkspur Cloud runs in seven regions. Each region is fully independent: data written in a region stays there unless you set up replication. | Region cod…",
+            "#2 acceptable-use.md \u003e Acceptable Use Policy: Acceptable Use Policy You are responsible for everything that runs in your organization, including what your users and customers store or send through it. Prohi…",
+            "#3 billing-faq.md \u003e Billing FAQ: Billing FAQ When am I charged? Invoices are issued on the first day of each month for the previous month's usage and plan fee. Payment is due within 15 days of …"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fixed-128-32",
+      "chunking": {
+        "strategy": "fixed",
+        "size": 128,
+        "overlap": 32,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 65,
+      "avg_chunk_tokens": 118.75384615384615,
+      "hit_at": {
+        "1": 0.703125,
+        "10": 0.953125,
+        "3": 0.890625,
+        "5": 0.9375
+      },
+      "mrr": 0.7993489583333334,
+      "context_tokens": 607.671875,
+      "hit1_by_tag": {
+        "context": 0.8,
+        "distractor": 0.6666666666666666,
+        "docx": 0.75,
+        "identifier": 0.4444444444444444,
+        "multi": 0,
+        "paraphrase": 0.875,
+        "pdf": 0.3333333333333333,
+        "plain": 0.75,
+        "table": 0.4444444444444444,
+        "txt": 1
+      },
+      "latency_p50_ms": 77.879,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: so that the organization can be reopened by contacting support. After 60 days, all buckets, volumes, and snapshots are permanently deleted, and the deletion is …",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy: Data Retention and Deletion Policy Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you delete…",
+            "#3 backups.md \u003e Backups and Recovery \u003e Testing restores: least once a quarter. Restored volumes are billed like any other volume, so delete them after the test. What is not backed up Deleted buckets cannot be recovere…"
+          ]
+        },
+        {
+          "id": "q29",
+          "question": "Which plan do I need for SCIM provisioning?",
+          "expected": [
+            "security.md: is available on Enterprise only"
+          ],
+          "tags": [],
+          "first_hit_rank": 8,
+          "retrieved": [
+            "#1 sla.md \u003e Service Level Agreement \u003e Uptime commitments: error. Team This plan commits to 99.9% monthly availability. That allows about 43 minutes of downtime in a 30-day month before credits apply. Business This plan…",
+            "#2 sla.md \u003e Service Level Agreement \u003e Uptime commitments \u003e Enterprise: the customer's dedicated capacity. Multi-region deployments are measured on the combined availability of all their regions. Service credits If monthly availabil…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing \u003e Annual billing: to the plan fee only, not to overage. Annual plans renew automatically unless cancelled at least 14 days before the renewal date. Enterprise Enterprise contract…"
+          ]
+        },
+        {
+          "id": "q31",
+          "question": "What is the maximum bug bounty payout?",
+          "expected": [
+            "security.md: pays up to $10,000 for critical findings"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits \u003e When you hit the limit: for more than ten minutes can trigger a temporary block of up to one hour, reported as error LS-4291. Raising your limits Business customers can request a highe…",
+            "#2 changelog.md \u003e API Changelog \u003e v2.4 (2025-11-20): the Business plan rate limit from 4,000 to 6,000 requests per minute. - Added error LS-4291 for clients that keep retrying without honoring `Retry-After`. v2.3 …",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: | 1,000 | 64 | | Enterprise | Negotiated | Negotiated | Negotiated | The burst allowance lets a client exceed the per-minute rate for a few seconds. It refills …"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage: Incident Report: ap-bangkok-1 Object Storage Outage Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:1…",
+            "#2 support.md \u003e Support \u003e Languages: Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours. Escalation If a ticket is not progressing, reply with the word ESCALATE an…",
+            "#3 status-page.txt \u003e LARKSPUR STATUS PAGE - HOW IT WORKS: minutes. Incidents are posted within 10 minutes of being confirmed by the on-call engineer. Updates follow at least every 30 minutes until the incident is resol…"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fixed-256-64",
+      "chunking": {
+        "strategy": "fixed",
+        "size": 256,
+        "overlap": 64,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 36,
+      "avg_chunk_tokens": 208.77777777777777,
+      "hit_at": {
+        "1": 0.6875,
+        "10": 0.96875,
+        "3": 0.890625,
+        "5": 0.921875
+      },
+      "mrr": 0.7931175595238095,
+      "context_tokens": 1090.0625,
+      "hit1_by_tag": {
+        "context": 0.6,
+        "distractor": 0.6666666666666666,
+        "docx": 0.75,
+        "identifier": 0.5555555555555556,
+        "multi": 1,
+        "paraphrase": 0.875,
+        "pdf": 0.6666666666666666,
+        "plain": 0.6428571428571429,
+        "table": 0.7777777777777778,
+        "txt": 1
+      },
+      "latency_p50_ms": 96.236,
+      "misses": [
+        {
+          "id": "q16",
+          "question": "Which header tells me how many requests I have left?",
+          "expected": [
+            "api-rate-limits.md: requests left in the current window"
+          ],
+          "tags": [
+            "identifier"
+          ],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 error-codes.md \u003e Error Codes \u003e Validation: 400 | The bucket name is invalid. Names must be 3 to 63 lowercase letters, digits, or hyphens. | Choose a valid name. | | LS-3012 | 409 | The bucket name is alr…",
+            "#2 error-codes.md \u003e Error Codes \u003e Limits and quotas: retry with backoff. | Service | Code | HTTP | Meaning | What to do | | LS-5031 | 503 | The region is temporarily unavailable. | Retry with backoff, or fail over…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Response headers: the current window. - `X-Larkspur-RateLimit-Reset`: seconds until the window resets. When you hit the limit Requests over the limit fail with HTTP 429 and error…"
+          ]
+        },
+        {
+          "id": "q31",
+          "question": "What is the maximum bug bounty payout?",
+          "expected": [
+            "security.md: pays up to $10,000 for critical findings"
+          ],
+          "tags": [],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits \u003e Response headers: the current window. - `X-Larkspur-RateLimit-Reset`: seconds until the window resets. When you hit the limit Requests over the limit fail with HTTP 429 and error…",
+            "#2 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#3 sla.md \u003e Service Level Agreement \u003e Uptime commitments \u003e Enterprise: across the customer's dedicated capacity. Multi-region deployments are measured on the combined availability of all their regions. Service credits If monthly av…"
+          ]
+        },
+        {
+          "id": "q38",
+          "question": "Which region is used if I don't pass --region?",
+          "expected": [
+            "onboarding.md: which is us-virginia-1 for new accounts"
+          ],
+          "tags": [],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 regions.md \u003e Regions: Regions Larkspur Cloud runs in seven regions. Each region is fully independent: data written in a region stays there unless you set up replication. | Region cod…",
+            "#2 regions.md \u003e Regions \u003e Choosing a region: for most applications in the area. The us-oregon-2 region replaced us-oregon-1, which was retired in 2023. Buckets that lived in us-oregon-1 were migrated autom…",
+            "#3 error-codes.md \u003e Error Codes \u003e Limits and quotas: retry with backoff. | Service | Code | HTTP | Meaning | What to do | | LS-5031 | 503 | The region is temporarily unavailable. | Retry with backoff, or fail over…"
+          ]
+        },
+        {
+          "id": "q48",
+          "question": "What was the Business rate limit before v2.4?",
+          "expected": [
+            "changelog.md: Raised the Business plan rate limit from 4,000 to 6,000 requests per minute"
+          ],
+          "tags": [
+            "distractor"
+          ],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 api-rate-limits.md \u003e API Rate Limits: API Rate Limits Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fa…",
+            "#2 api-rate-limits.md \u003e API Rate Limits \u003e Response headers: the current window. - `X-Larkspur-RateLimit-Reset`: seconds until the window resets. When you hit the limit Requests over the limit fail with HTTP 429 and error…",
+            "#3 pricing.md \u003e Larkspur Cloud Pricing \u003e Plans at a glance: API activity. Overage rates When you use more than your plan includes, the extra usage is billed at the end of the month. - Additional storage costs $0.018 per …"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage: Incident Report: ap-bangkok-1 Object Storage Outage Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:1…",
+            "#2 support.md \u003e Support \u003e First response times: Severity | Standard | Priority | Premier | | P1 | 8 hours | 1 hour | 15 minutes | | P2 | 1 business day | 4 hours | 1 hour | | P3 | 2 business days | 1 business…",
+            "#3 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Legal holds: of the affected data is suspended until the hold is lifted. We notify the customer of a legal hold unless the law forbids it. Requests To request deletion of pe…"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "structure-128-0",
+      "chunking": {
+        "strategy": "structure",
+        "size": 128,
+        "overlap": 0,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 94,
+      "avg_chunk_tokens": 61.234042553191486,
+      "hit_at": {
+        "1": 0.765625,
+        "10": 0.953125,
+        "3": 0.921875,
+        "5": 0.921875
+      },
+      "mrr": 0.8401041666666668,
+      "context_tokens": 319.765625,
+      "hit1_by_tag": {
+        "context": 0.4,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 1,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.6666666666666666,
+        "txt": 1
+      },
+      "latency_p50_ms": 114.802,
+      "misses": [
+        {
+          "id": "q09",
+          "question": "What uptime does the Business plan guarantee?",
+          "expected": [
+            "sla.md: This plan commits to 99.95% monthly availability"
+          ],
+          "tags": [
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Annual billing: Paying annually upfront gives a 17% discount on the Team and Business plan fees. The discount applies to the plan fee only, not to overage. Annual plans renew a…",
+            "#2 changelog.md \u003e API Changelog \u003e v2.4 (2025-11-20): - Raised the Business plan rate limit from 4,000 to 6,000 requests per minute. - Added error LS-4291 for clients that keep retrying without honoring `Retry-Afte…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business | 6,000 | 1,000 | 64 | | Enterpris…"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from 1,000.",
+            "#2 api-rate-limits.md \u003e API Rate Limits: Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fail.",
+            "#3 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:13 to 03:00 UTC. During that time, 92% of requests to the reg…"
+          ]
+        },
+        {
+          "id": "q56",
+          "question": "What caused the ap-bangkok-1 outage?",
+          "expected": [
+            "incident-report-2025-08.pdf: used a TLS certificate that expired at 02:13 UTC"
+          ],
+          "tags": [
+            "pdf"
+          ],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:13 to 03:00 UTC. During that time, 92% of requests to the reg…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled cross-region replication to ap-singapore-1 could read the repl…",
+            "#3 regions.md \u003e Regions \u003e Feature availability: Most features are available in every region. The exceptions are: - The managed queue service is not yet available in ap-bangkok-1. - Customer-managed keys are a…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 status-page.txt \u003e LARKSPUR STATUS PAGE - HOW IT WORKS: Incidents are posted within 10 minutes of being confirmed by the on-call engineer. Updates follow at least every 30 minutes until the incident is resolved. A wr…",
+            "#2 support.md \u003e Support \u003e Languages: Support is available in English on every tier. Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours.",
+            "#3 support.md \u003e Support \u003e Escalation: If a ticket is not progressing, reply with the word ESCALATE and a support manager will review it within one business day. Premier customers can escalate direct…"
+          ]
+        },
+        {
+          "id": "q64",
+          "question": "Compare the Team and Business uptime commitments.",
+          "expected": [
+            "sla.md: This plan commits to 99.9% monthly availability",
+            "sla.md: This plan commits to 99.95% monthly availability"
+          ],
+          "tags": [
+            "multi",
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Enterprise: Enterprise contracts start at 12 months and are priced per deployment. They add dedicated capacity, a named technical account manager, custom data residency, an…",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing \u003e Annual billing: Paying annually upfront gives a 17% discount on the Team and Business plan fees. The discount applies to the plan fee only, not to overage. Annual plans renew a…",
+            "#3 backups.md \u003e Backups and Recovery \u003e Retention: How long snapshots are kept depends on the plan: - Team: 7 days - Business: 30 days - Enterprise: 90 days, or longer by contract Starter volumes are not snapsho…"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "structure-256-0",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 0,
+        "context_header": false
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 63.96666666666667,
+      "hit_at": {
+        "1": 0.765625,
+        "10": 0.953125,
+        "3": 0.890625,
+        "5": 0.921875
+      },
+      "mrr": 0.8341145833333333,
+      "context_tokens": 354.171875,
+      "hit1_by_tag": {
+        "context": 0.4,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.875,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.7777777777777778,
+        "txt": 1
+      },
+      "latency_p50_ms": 83.692,
+      "misses": [
+        {
+          "id": "q09",
+          "question": "What uptime does the Business plan guarantee?",
+          "expected": [
+            "sla.md: This plan commits to 99.95% monthly availability"
+          ],
+          "tags": [
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Annual billing: Paying annually upfront gives a 17% discount on the Team and Business plan fees. The discount applies to the plan fee only, not to overage. Annual plans renew a…",
+            "#2 changelog.md \u003e API Changelog \u003e v2.4 (2025-11-20): - Raised the Business plan rate limit from 4,000 to 6,000 requests per minute. - Added error LS-4291 for clients that keep retrying without honoring `Retry-Afte…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business | 6,000 | 1,000 | 64 | | Enterpris…"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 6,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from 1,000.",
+            "#2 api-rate-limits.md \u003e API Rate Limits: Rate limits protect shared capacity. They are applied per organization, per region, and they count every API request, including requests that fail.",
+            "#3 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:13 to 03:00 UTC. During that time, 92% of requests to the reg…"
+          ]
+        },
+        {
+          "id": "q56",
+          "question": "What caused the ap-bangkok-1 outage?",
+          "expected": [
+            "incident-report-2025-08.pdf: used a TLS certificate that expired at 02:13 UTC"
+          ],
+          "tags": [
+            "pdf"
+          ],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02:13 to 03:00 UTC. During that time, 92% of requests to the reg…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled cross-region replication to ap-singapore-1 could read the repl…",
+            "#3 regions.md \u003e Regions \u003e Feature availability: Most features are available in every region. The exceptions are: - The managed queue service is not yet available in ap-bangkok-1. - Customer-managed keys are a…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 support.md \u003e Support \u003e Languages: Support is available in English on every tier. Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours.",
+            "#2 support.md \u003e Support \u003e Escalation: If a ticket is not progressing, reply with the word ESCALATE and a support manager will review it within one business day. Premier customers can escalate direct…",
+            "#3 status-page.txt \u003e LARKSPUR STATUS PAGE - HOW IT WORKS: The status page at status.larkspur.example shows the current health of every region and service. Components are shown in one of four states: Operational, Degrad…"
+          ]
+        },
+        {
+          "id": "q64",
+          "question": "Compare the Team and Business uptime commitments.",
+          "expected": [
+            "sla.md: This plan commits to 99.9% monthly availability",
+            "sla.md: This plan commits to 99.95% monthly availability"
+          ],
+          "tags": [
+            "multi",
+            "context"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 pricing.md \u003e Larkspur Cloud Pricing \u003e Enterprise: Enterprise contracts start at 12 months and are priced per deployment. They add dedicated capacity, a named technical account manager, custom data residency, an…",
+            "#2 pricing.md \u003e Larkspur Cloud Pricing \u003e Annual billing: Paying annually upfront gives a 17% discount on the Team and Business plan fees. The discount applies to the plan fee only, not to overage. Annual plans renew a…",
+            "#3 backups.md \u003e Backups and Recovery \u003e Retention: How long snapshots are kept depends on the plan: - Team: 7 days - Business: 30 days - Enterprise: 90 days, or longer by contract Starter volumes are not snapsho…"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "structure-128-0-ctx",
+      "chunking": {
+        "strategy": "structure",
+        "size": 128,
+        "overlap": 0,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 94,
+      "avg_chunk_tokens": 70.48936170212765,
+      "hit_at": {
+        "1": 0.75,
+        "10": 1,
+        "3": 0.953125,
+        "5": 0.96875
+      },
+      "mrr": 0.8503906250000001,
+      "context_tokens": 365.515625,
+      "hit1_by_tag": {
+        "context": 0.6,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.875,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.4444444444444444,
+        "txt": 1
+      },
+      "latency_p50_ms": 62.994,
+      "misses": [
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): API Changelog \u003e v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: Data Retention and Deletion Policy \u003e Deleted objects and buckets When you delete an object from a bucket with versioning turned off, the object is removed immed…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: API Rate Limits \u003e Limits by plan | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business |…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 8,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled c…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02…",
+            "#3 status-page.txt \u003e LARKSPUR STATUS PAGE - HOW IT WORKS: LARKSPUR STATUS PAGE - HOW IT WORKS Incidents are posted within 10 minutes of being confirmed by the on-call engineer. Updates follow at least every 30 minutes …"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "structure-256-0-ctx",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 0,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 73.23333333333333,
+      "hit_at": {
+        "1": 0.734375,
+        "10": 0.984375,
+        "3": 0.9375,
+        "5": 0.953125
+      },
+      "mrr": 0.835044642857143,
+      "context_tokens": 385.921875,
+      "hit1_by_tag": {
+        "context": 0.6,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.75,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.4444444444444444,
+        "txt": 1
+      },
+      "latency_p50_ms": 64.532,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: Data Retention and Deletion Policy \u003e Account closure When an organization is closed, its data is retained for 60 days so that the organization can be reopened b…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Purpose: Data Retention and Deletion Policy \u003e Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you dele…",
+            "#3 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause An internal load balancer in front of the storage nodes used a TLS certificate that expired at …"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): API Changelog \u003e v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: Data Retention and Deletion Policy \u003e Deleted objects and buckets When you delete an object from a bucket with versioning turned off, the object is removed immed…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: API Rate Limits \u003e Limits by plan | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business |…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled c…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02…",
+            "#3 support.md \u003e Support \u003e Languages: Support \u003e Languages Support is available in English on every tier. Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "structure-256-32-ctx",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 32,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 73.23333333333333,
+      "hit_at": {
+        "1": 0.734375,
+        "10": 0.984375,
+        "3": 0.9375,
+        "5": 0.953125
+      },
+      "mrr": 0.835044642857143,
+      "context_tokens": 385.921875,
+      "hit1_by_tag": {
+        "context": 0.6,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.75,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.4444444444444444,
+        "txt": 1
+      },
+      "latency_p50_ms": 137.103,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: Data Retention and Deletion Policy \u003e Account closure When an organization is closed, its data is retained for 60 days so that the organization can be reopened b…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Purpose: Data Retention and Deletion Policy \u003e Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you dele…",
+            "#3 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause An internal load balancer in front of the storage nodes used a TLS certificate that expired at …"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): API Changelog \u003e v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: Data Retention and Deletion Policy \u003e Deleted objects and buckets When you delete an object from a bucket with versioning turned off, the object is removed immed…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: API Rate Limits \u003e Limits by plan | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business |…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled c…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02…",
+            "#3 support.md \u003e Support \u003e Languages: Support \u003e Languages Support is available in English on every tier. Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "structure-512-0-ctx",
+      "chunking": {
+        "strategy": "structure",
+        "size": 512,
+        "overlap": 0,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 89,
+      "avg_chunk_tokens": 73.95505617977528,
+      "hit_at": {
+        "1": 0.734375,
+        "10": 0.984375,
+        "3": 0.9375,
+        "5": 0.953125
+      },
+      "mrr": 0.835044642857143,
+      "context_tokens": 391.859375,
+      "hit1_by_tag": {
+        "context": 0.6,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.75,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.4444444444444444,
+        "txt": 1
+      },
+      "latency_p50_ms": 92.189,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: Data Retention and Deletion Policy \u003e Account closure When an organization is closed, its data is retained for 60 days so that the organization can be reopened b…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Purpose: Data Retention and Deletion Policy \u003e Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you dele…",
+            "#3 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause An internal load balancer in front of the storage nodes used a TLS certificate that expired at …"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): API Changelog \u003e v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: Data Retention and Deletion Policy \u003e Deleted objects and buckets When you delete an object from a bucket with versioning turned off, the object is removed immed…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: API Rate Limits \u003e Limits by plan | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business |…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled c…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02…",
+            "#3 support.md \u003e Support \u003e Languages: Support \u003e Languages Support is available in English on every tier. Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours."
+          ]
+        }
+      ]
+    }
+  ],
+  "retrieval": [
+    {
+      "label": "dense",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 32,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 73.23333333333333,
+      "hit_at": {
+        "1": 0.734375,
+        "10": 0.984375,
+        "3": 0.9375,
+        "5": 0.953125
+      },
+      "mrr": 0.835044642857143,
+      "context_tokens": 385.921875,
+      "hit1_by_tag": {
+        "context": 0.6,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.5555555555555556,
+        "multi": 0,
+        "paraphrase": 0.75,
+        "pdf": 0.3333333333333333,
+        "plain": 0.8214285714285714,
+        "table": 0.4444444444444444,
+        "txt": 1
+      },
+      "latency_p50_ms": 52.231,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: Data Retention and Deletion Policy \u003e Account closure When an organization is closed, its data is retained for 60 days so that the organization can be reopened b…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Purpose: Data Retention and Deletion Policy \u003e Purpose This policy explains how long Larkspur Cloud keeps customer data, logs, and backups, and what happens when you dele…",
+            "#3 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause An internal load balancer in front of the storage nodes used a TLS certificate that expired at …"
+          ]
+        },
+        {
+          "id": "q23",
+          "question": "What is the maximum object size?",
+          "expected": [
+            "error-codes.md: The object is larger than 5 TB, the maximum object size"
+          ],
+          "tags": [],
+          "first_hit_rank": 10,
+          "retrieved": [
+            "#1 changelog.md \u003e API Changelog \u003e v2.6 (2026-09-15): API Changelog \u003e v2.6 (2026-09-15) - Added server-side copy between buckets in different regions. - Object listing now returns up to 5,000 keys per page, up from…",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Deleted objects and buckets: Data Retention and Deletion Policy \u003e Deleted objects and buckets When you delete an object from a bucket with versioning turned off, the object is removed immed…",
+            "#3 api-rate-limits.md \u003e API Rate Limits \u003e Limits by plan: API Rate Limits \u003e Limits by plan | Plan | Requests per minute | Burst | Concurrent uploads | | Starter | 120 | 20 | 2 | | Team | 1,200 | 200 | 16 | | Business |…"
+          ]
+        },
+        {
+          "id": "q57",
+          "question": "What reference should I use when asking support about the Bangkok incident?",
+          "expected": [
+            "incident-report-2025-08.pdf: INC-2025-0814"
+          ],
+          "tags": [
+            "pdf",
+            "identifier"
+          ],
+          "first_hit_rank": 7,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Impact Customers with buckets in ap-bangkok-1 could not read or write objects. Customers who had enabled c…",
+            "#2 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Summary On August 14, 2025, the object storage API in ap-bangkok-1 returned errors for 47 minutes, from 02…",
+            "#3 support.md \u003e Support \u003e Languages: Support \u003e Languages Support is available in English on every tier. Priority and Premier also cover Japanese and Thai during Asia-Pacific business hours."
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hybrid (dense + keyword, RRF)",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 32,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": true,
+        "rerank": false,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 73.23333333333333,
+      "hit_at": {
+        "1": 0.84375,
+        "10": 1,
+        "3": 0.96875,
+        "5": 1
+      },
+      "mrr": 0.90546875,
+      "context_tokens": 411.234375,
+      "hit1_by_tag": {
+        "context": 0.8,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 0.8888888888888888,
+        "multi": 0,
+        "paraphrase": 0.625,
+        "pdf": 0.3333333333333333,
+        "plain": 0.9285714285714286,
+        "table": 0.7777777777777778,
+        "txt": 1
+      },
+      "latency_p50_ms": 74.048,
+      "misses": null
+    },
+    {
+      "label": "dense + rerank",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 32,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": false,
+        "rerank": true,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 73.23333333333333,
+      "hit_at": {
+        "1": 0.9375,
+        "10": 0.984375,
+        "3": 0.984375,
+        "5": 0.984375
+      },
+      "mrr": 0.9609375,
+      "context_tokens": 392.015625,
+      "hit1_by_tag": {
+        "context": 0.8,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 1,
+        "multi": 0,
+        "paraphrase": 0.875,
+        "pdf": 1,
+        "plain": 1,
+        "table": 0.7777777777777778,
+        "txt": 1
+      },
+      "latency_p50_ms": 1879.329,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause An internal load balancer in front of the storage nodes used a TLS certificate that expired at …",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: Data Retention and Deletion Policy \u003e Account closure When an organization is closed, its data is retained for 60 days so that the organization can be reopened b…",
+            "#3 billing-faq.md \u003e Billing FAQ \u003e What happens if a payment fails?: Billing FAQ \u003e What happens if a payment fails? We retry the card three times over seven days and email the billing contact each time. If the invoice is still un…"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hybrid + rerank",
+      "chunking": {
+        "strategy": "structure",
+        "size": 256,
+        "overlap": 32,
+        "context_header": true
+      },
+      "retrieval": {
+        "hybrid": true,
+        "rerank": true,
+        "candidates": 30,
+        "top_k": 10
+      },
+      "questions": 64,
+      "chunks": 90,
+      "avg_chunk_tokens": 73.23333333333333,
+      "hit_at": {
+        "1": 0.9375,
+        "10": 0.984375,
+        "3": 0.984375,
+        "5": 0.984375
+      },
+      "mrr": 0.9609375,
+      "context_tokens": 399.921875,
+      "hit1_by_tag": {
+        "context": 0.8,
+        "distractor": 0.6666666666666666,
+        "docx": 1,
+        "identifier": 1,
+        "multi": 0,
+        "paraphrase": 0.875,
+        "pdf": 1,
+        "plain": 1,
+        "table": 0.7777777777777778,
+        "txt": 1
+      },
+      "latency_p50_ms": 1420.624,
+      "misses": [
+        {
+          "id": "q04",
+          "question": "What happens when a free-tier account runs out of storage?",
+          "expected": [
+            "pricing.md: new writes are rejected with error LS-4130"
+          ],
+          "tags": [
+            "paraphrase"
+          ],
+          "first_hit_rank": 0,
+          "retrieved": [
+            "#1 incident-report-2025-08.pdf \u003e Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause: Incident Report: ap-bangkok-1 Object Storage Outage \u003e Root cause An internal load balancer in front of the storage nodes used a TLS certificate that expired at …",
+            "#2 data-retention.docx \u003e Data Retention and Deletion Policy \u003e Account closure: Data Retention and Deletion Policy \u003e Account closure When an organization is closed, its data is retained for 60 days so that the organization can be reopened b…",
+            "#3 billing-faq.md \u003e Billing FAQ \u003e What happens if a payment fails?: Billing FAQ \u003e What happens if a payment fails? We retry the card three times over seven days and email the billing contact each time. If the invoice is still un…"
+          ]
+        }
+      ]
+    }
+  ],
+  "retrieval_base_config": "structure-256-32-ctx"
+}
