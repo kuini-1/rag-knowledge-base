@@ -1,0 +1,2170 @@
+{
+  "date": "2026-11-23",
+  "model": "ollama:qwen3:4b-instruct",
+  "judge_model": "ollama:qwen3:4b-instruct",
+  "answerable": 64,
+  "unanswerable": 7,
+  "accuracy": 0.9375,
+  "false_abstentions": 1,
+  "correct_abstentions": 6,
+  "citation_precision": 0.9230769230769231,
+  "mean_grounded": 0.9014084507042254,
+  "risk_counts": {
+    "high": 6,
+    "low": 62,
+    "medium": 3
+  },
+  "total_tokens": 81031,
+  "results": [
+    {
+      "id": "q01",
+      "question": "How much does the Team plan cost per month?",
+      "reference": "$49 per month.",
+      "answerable": true,
+      "answer": "The Team plan costs $49 per month.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9403080553878999,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the correct cost of the Team plan as $49 per month, which matches the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1146,
+        "output_tokens": 75,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q02",
+      "question": "What's the extra storage price on Business if I go over the included amount?",
+      "reference": "$0.015 per GB-month.",
+      "answerable": true,
+      "answer": "The extra storage price on Business if you go over the included amount is $0.015 per GB-month.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9685306016988894,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the fact from the reference answer: the extra storage price is $0.015 per GB-month."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1183,
+        "output_tokens": 115,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q03",
+      "question": "How big is the discount if we pay for a year upfront?",
+      "reference": "17% off the Team and Business plan fees.",
+      "answerable": true,
+      "answer": "The discount for paying annually upfront is 17%.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.956498871358607,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the discount percentage as 17%, which matches the reference answer. The reference specifies the discount applies to Team and Business plan fees, but the answer does not mention the plan type. However, since the question asks about the discount for paying annually upfront, and the reference answer provides the correct discount amount, the core fact is accurately conveyed. The omission of the plan type does not constitute a factual error in the discount value, and the answer correctly identifies the magnitude of the discount."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 926,
+        "output_tokens": 168,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q04",
+      "question": "What happens when a free-tier account runs out of storage?",
+      "reference": "New writes are rejected with LS-4130 until data is deleted or the account upgrades.",
+      "answerable": true,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.0011691404663310152,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "grade": {
+        "verdict": "incorrect",
+        "reason": "abstained although the documents contain the answer"
+      },
+      "passed": false,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 895,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q05",
+      "question": "How much did the old Pro plan cost?",
+      "reference": "$79 per month, with 1 TB of storage.",
+      "answerable": true,
+      "answer": "The old Pro plan cost $79 per month.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 1,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9896086411535654,
+        "abstained": false,
+        "hallucination_risk": "high",
+        "warnings": [
+          "1 citation(s) quote text that is not in the cited source"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "partial",
+        "reason": "The answer correctly states the cost of the old Pro plan as $79 per month, which matches the reference answer. Although the storage detail is missing, the core fact about the cost is accurate and fully stated."
+      },
+      "passed": false,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1158,
+        "output_tokens": 108,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q06",
+      "question": "How long is the free trial and which plan does it give?",
+      "reference": "21 days of the Business plan, no credit card needed.",
+      "answerable": true,
+      "answer": "The free trial is 21 days long and provides access to the Business plan.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9900022950134761,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the duration of the free trial (21 days) and identifies the plan (Business plan), matching the reference answer in factual content."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 939,
+        "output_tokens": 105,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q07",
+      "question": "How is traffic between two Larkspur regions billed?",
+      "reference": "At half the internet egress rate.",
+      "answerable": true,
+      "answer": "Traffic between two Larkspur regions is billed at half the internet egress rate.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9760660745581986,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that traffic between two Larkspur regions is billed at half the internet egress rate, which matches the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1341,
+        "output_tokens": 105,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q08",
+      "question": "How long does it take to get an Enterprise quote?",
+      "reference": "Typically three business days.",
+      "answerable": true,
+      "answer": "It takes three business days to get an Enterprise quote.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9968906531063362,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the fact that it takes three business days, which matches the reference answer. The wording is slightly less precise (missing 'typically'), but the core fact is correctly conveyed."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 839,
+        "output_tokens": 93,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q09",
+      "question": "What uptime does the Business plan guarantee?",
+      "reference": "99.95% monthly availability.",
+      "answerable": true,
+      "answer": "The Business plan guarantees 99.95% monthly availability.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9858315372900095,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the same fact as the reference answer: that the Business plan guarantees 99.95% monthly availability."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 901,
+        "output_tokens": 110,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q10",
+      "question": "How much downtime is allowed on Team before credits kick in?",
+      "reference": "About 43 minutes in a 30-day month.",
+      "answerable": true,
+      "answer": "The Team plan allows about 43 minutes of downtime in a 30-day month before credits kick in.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9991507009683774,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer accurately states the fact from the reference answer: that about 43 minutes of downtime is allowed in a 30-day month before credits kick in. There is no deviation or error in the factual content."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 945,
+        "output_tokens": 125,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q11",
+      "question": "What credit do I get if availability drops to 97%?",
+      "reference": "25% of that month's plan fee.",
+      "answerable": true,
+      "answer": "If availability drops to 97%, you receive a 50% credit on the next invoice because it is below 95.0%.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": [
+          "97"
+        ],
+        "retrieval_confidence": 0.9812400395915123,
+        "abstained": false,
+        "hallucination_risk": "high",
+        "warnings": [
+          "numbers not found in any source: 97"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "incorrect",
+        "reason": "The reference answer states that the credit is 25% of the monthly plan fee, while the answer claims a 50% credit because availability is below 95%. This contradicts the reference answer, which does not mention a 50% credit or a threshold of 95%. The answer introduces a fact not present in the reference."
+      },
+      "passed": false,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 997,
+        "output_tokens": 152,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q12",
+      "question": "How long do I have to file an SLA credit claim?",
+      "reference": "Within 30 days of the end of the affected month.",
+      "answerable": true,
+      "answer": "You have 30 days from the end of the affected month to file an SLA credit claim.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.8852691744031462,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the time frame as 30 days from the end of the affected month, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 937,
+        "output_tokens": 101,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q13",
+      "question": "Is scheduled maintenance counted against the uptime guarantee?",
+      "reference": "No, if it was announced at least 72 hours in advance (max four hours per month).",
+      "answerable": true,
+      "answer": "Scheduled maintenance is not counted against the uptime guarantee because the commitment does not cover downtime caused by scheduled maintenance announced at least 72 hours in advance.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 1,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.8898239835213304,
+        "abstained": false,
+        "hallucination_risk": "high",
+        "warnings": [
+          "1 citation(s) quote text that is not in the cited source"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that scheduled maintenance is not counted against the uptime guarantee and specifies that it must be announced at least 72 hours in advance, which aligns with the reference answer. The detail about 'max four hours per month' is not included in the answer, but the core factual point is accurate and sufficient."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 934,
+        "output_tokens": 152,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q14",
+      "question": "Does the Team SLA cover the managed queue service?",
+      "reference": "No. Business covers it; Team does not.",
+      "answerable": true,
+      "answer": "No, the Team SLA does not cover the managed queue service.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9874517357707644,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that the Team SLA does not cover the managed queue service, which aligns with the reference answer. The factual content is accurate and matches the reference."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 931,
+        "output_tokens": 99,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q15",
+      "question": "What is the request-per-minute limit on the Team plan?",
+      "reference": "1,200 requests per minute.",
+      "answerable": true,
+      "answer": "The request-per-minute limit on the Team plan is 1,200.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 1,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9993838411280911,
+        "abstained": false,
+        "hallucination_risk": "high",
+        "warnings": [
+          "1 citation(s) quote text that is not in the cited source"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the request-per-minute limit as 1,200, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1017,
+        "output_tokens": 96,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q16",
+      "question": "Which header tells me how many requests I have left?",
+      "reference": "X-Larkspur-RateLimit-Remaining.",
+      "answerable": true,
+      "answer": "The header that tells me how many requests I have left is X-Larkspur-RateLimit-Remaining.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 1,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9400676344103476,
+        "abstained": false,
+        "hallucination_risk": "high",
+        "warnings": [
+          "1 citation(s) quote text that is not in the cited source"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly identifies the header 'X-Larkspur-RateLimit-Remaining' as the one that indicates the number of remaining requests, matching the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1035,
+        "output_tokens": 114,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q17",
+      "question": "How many times do the official SDKs retry after a 429?",
+      "reference": "Up to five times.",
+      "answerable": true,
+      "answer": "The official SDKs retry up to five times after a 429.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9996702329382251,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that the official SDKs retry up to five times after a 429, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1108,
+        "output_tokens": 95,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q18",
+      "question": "How can a Business customer get higher rate limits?",
+      "reference": "Request it in the console under Settings, then Quotas; reviewed within two business days.",
+      "answerable": true,
+      "answer": "A Business customer can request a higher rate limit by going to the console under Settings, then Quotas, and their request is reviewed within two business days.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9989585133350527,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer accurately reflects the reference answer by stating that a Business customer can request a higher rate limit by going to the console under Settings, then Quotas, and that the request is reviewed within two business days. All key facts are present and correctly stated."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1000,
+        "output_tokens": 145,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q19",
+      "question": "Do health checks count toward the rate limit?",
+      "reference": "No. /v2/status and /v2/auth/refresh are exempt.",
+      "answerable": true,
+      "answer": "No, health checks do not count toward the rate limit.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9997561778473388,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that health checks do not count toward the rate limit, which aligns with the reference answer. The reference also mentions specific endpoints (/v2/status and /v2/auth/refresh) being exempt, but the answer does not include that detail. Since the core fact—that health checks do not count—is accurate and fully stated, the answer is correct in terms of the essential information, even if it omits the specific endpoints."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1017,
+        "output_tokens": 165,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q20",
+      "question": "How many concurrent uploads can a Business organization run?",
+      "reference": "64.",
+      "answerable": true,
+      "answer": "A Business organization can run 64 concurrent uploads.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.44588139603918525,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the correct fact that a Business organization can run 64 concurrent uploads, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 952,
+        "output_tokens": 94,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q21",
+      "question": "What does LS-3012 mean?",
+      "reference": "The bucket name is already taken in this region (HTTP 409).",
+      "answerable": true,
+      "answer": "LS-3012 means the bucket name is already taken in this region.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9825560033513551,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The reference answer states that 'LS-3012' refers to 'the bucket name is already taken in this region (HTTP 409)', and the answer correctly identifies this meaning. The answer accurately reflects the reference content without adding or distorting facts."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1186,
+        "output_tokens": 119,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q22",
+      "question": "I'm getting LS-1007, what should I do?",
+      "reference": "The key lacks the scope for the action: add the scope or use another key.",
+      "answerable": true,
+      "answer": "If you're getting LS-1007, you should add the scope to the key or use a different key.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.49388061752135176,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly identifies that LS-1007 occurs when a key lacks the scope for an action, and suggests the two valid solutions: adding scope or using another key. This matches the reference answer in meaning and factual accuracy."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1235,
+        "output_tokens": 121,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q23",
+      "question": "What is the maximum object size?",
+      "reference": "5 TB.",
+      "answerable": true,
+      "answer": "The maximum object size is 5 TB.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.7277661961201275,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the maximum object size as 5 TB, which matches the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1045,
+        "output_tokens": 80,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q24",
+      "question": "Which error indicates an upstream storage node timeout?",
+      "reference": "LS-5040 (HTTP 504).",
+      "answerable": true,
+      "answer": "The error code LS-5040 indicates an upstream storage node timeout.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9935650505446781,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly identifies that LS-5040 indicates an upstream storage node timeout, which matches the reference answer. The fact is accurate and fully stated."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1126,
+        "output_tokens": 119,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q25",
+      "question": "What do the first digits of error codes mean?",
+      "reference": "1 authentication, 3 validation, 4 limits and quotas, 5 service-side.",
+      "answerable": true,
+      "answer": "The first digit of error codes groups errors by cause: 1 for authentication, 3 for validation, 4 for limits and quotas, 5 for service-side problems.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9934593905823565,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly identifies that the first digit groups errors by cause and accurately states the meanings of digits 1, 3, 4, and 5 as in the reference answer. The information is fully present and factually correct."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1178,
+        "output_tokens": 154,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q26",
+      "question": "How often are encryption master keys rotated?",
+      "reference": "Every 90 days.",
+      "answerable": true,
+      "answer": "Encryption master keys are rotated every 90 days.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9997856731368661,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the same fact as the reference answer: that encryption master keys are rotated every 90 days. There is no deviation or inaccuracy."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1079,
+        "output_tokens": 103,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q27",
+      "question": "Until when is TLS 1.2 supported?",
+      "reference": "Until June 30, 2026.",
+      "answerable": true,
+      "answer": "TLS 1.2 is supported until June 30, 2026.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9840127045657485,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the end date for TLS 1.2 support as June 30, 2026, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1224,
+        "output_tokens": 124,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q28",
+      "question": "Can I turn off MFA for admins?",
+      "reference": "No. MFA is always required for Owners and Admins.",
+      "answerable": true,
+      "answer": "No, you cannot turn off multi-factor authentication for admins because it is always required and cannot be turned off for them.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.11416978534070114,
+        "abstained": false,
+        "hallucination_risk": "medium",
+        "warnings": [
+          "low retrieval confidence (0.11): your documents may not cover this"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that MFA cannot be turned off for admins, aligning with the reference answer that MFA is always required for Owners and Admins. The factual content is accurate and fully supported by the reference."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1148,
+        "output_tokens": 129,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q29",
+      "question": "Which plan do I need for SCIM provisioning?",
+      "reference": "Enterprise.",
+      "answerable": true,
+      "answer": "You need the Enterprise plan for SCIM provisioning.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9115974151820123,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The reference answer states that the Enterprise plan is needed for SCIM provisioning, and the answer correctly identifies the same plan without any factual error or omission."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 865,
+        "output_tokens": 98,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q30",
+      "question": "Can I store credit card numbers on Larkspur?",
+      "reference": "No. The platform is not PCI DSS certified.",
+      "answerable": true,
+      "answer": "No, you cannot store credit card numbers on Larkspur Cloud because it is not currently certified for PCI DSS.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9967910667922816,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The reference answer states that the platform is not PCI DSS certified, which means storing credit card numbers is not allowed. The answer correctly conveys that Larkspur Cloud is not PCI DSS certified and thus cannot store credit card numbers. This aligns with the reference answer in factual content."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 951,
+        "output_tokens": 146,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q31",
+      "question": "What is the maximum bug bounty payout?",
+      "reference": "Up to $10,000 for critical findings.",
+      "answerable": true,
+      "answer": "The maximum bug bounty payout is $10,000.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9858835798897986,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the maximum bug bounty payout as $10,000, which aligns with the reference answer's key fact, even though it omits the qualifier 'for critical findings'. The core factual content is accurate and present."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 993,
+        "output_tokens": 116,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q32",
+      "question": "When did the Bangkok region launch and how many availability zones does it have?",
+      "reference": "2025, with 2 availability zones.",
+      "answerable": true,
+      "answer": "The Bangkok region launched in 2025 and has 2 availability zones.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9657502188677366,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that the Bangkok region launched in 2025 and has 2 availability zones, matching the reference answer in both facts and detail."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1281,
+        "output_tokens": 107,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q33",
+      "question": "Is the managed queue available in Thailand?",
+      "reference": "Not yet: it isn't available in ap-bangkok-1.",
+      "answerable": true,
+      "answer": "The managed queue service is not available in Thailand, as it is not yet available in ap-bangkok-1.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9990456398021045,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that the managed queue is not available in Thailand, specifically citing ap-bangkok-1 as the region where it is not yet available, which aligns with the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 986,
+        "output_tokens": 117,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q34",
+      "question": "Where can I use GPU image processing?",
+      "reference": "Only in us-oregon-2 and ap-tokyo-1.",
+      "answerable": true,
+      "answer": "You can use GPU-backed image processing in us-oregon-2 and ap-tokyo-1.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9848553025941063,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly identifies the regions where GPU-backed image processing is available, matching the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1027,
+        "output_tokens": 101,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q35",
+      "question": "How quickly does cross-region replication copy new objects?",
+      "reference": "Within 15 minutes for 99% of objects.",
+      "answerable": true,
+      "answer": "Cross-region replication copies new objects to a second region within 15 minutes for 99% of objects.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9999278636609843,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer accurately reflects the reference answer by stating that cross-region replication copies new objects within 15 minutes for 99% of objects, matching the key factual content without deviation."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1232,
+        "output_tokens": 120,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q36",
+      "question": "What happened to us-oregon-1?",
+      "reference": "It was retired in 2023 and replaced by us-oregon-2; buckets were migrated.",
+      "answerable": true,
+      "answer": "The us-oregon-1 region was retired in 2023 and replaced by us-oregon-2.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.8528141078378464,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that us-oregon-1 was retired in 2023 and replaced by us-oregon-2, which matches the reference answer. The mention of 'buckets being migrated' is not included in the answer, but the core facts are present and accurate."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1249,
+        "output_tokens": 148,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q37",
+      "question": "How do I install the CLI on Windows?",
+      "reference": "winget install Larkspur.Lark",
+      "answerable": true,
+      "answer": "To install the CLI on Windows, run `winget install Larkspur.Lark`.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9996080482702204,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The reference answer states that the CLI can be installed via 'winget install Larkspur.Lark', which is a specific command. The answer to grade replicates this command exactly, and it correctly reflects the method described in the reference. The fact that this command installs the CLI on Windows is accurate and directly matches the reference."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1049,
+        "output_tokens": 139,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q38",
+      "question": "Which region is used if I don't pass --region?",
+      "reference": "The profile default, which is us-virginia-1 for new accounts.",
+      "answerable": true,
+      "answer": "If you don't pass --region, the CLI uses the default region from your profile, which is us-virginia-1 for new accounts.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.1024732547581049,
+        "abstained": false,
+        "hallucination_risk": "medium",
+        "warnings": [
+          "low retrieval confidence (0.10): your documents may not cover this"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that the CLI uses the default region from the profile and specifies that for new accounts, this default is us-virginia-1, matching the reference answer in both fact and detail."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1147,
+        "output_tokens": 134,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q39",
+      "question": "How do I disable the CLI update check?",
+      "reference": "Set LARK_NO_UPDATE_CHECK=1.",
+      "answerable": true,
+      "answer": "To disable the CLI update check, set the environment variable `LARK_NO_UPDATE_CHECK=1`.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9350177703663411,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that setting the environment variable LARK_NO_UPDATE_CHECK=1 disables the CLI update check, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1183,
+        "output_tokens": 102,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q40",
+      "question": "How long are snapshots kept on the Business plan?",
+      "reference": "30 days.",
+      "answerable": true,
+      "answer": "Snapshots are kept for 30 days on the Business plan.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9999138262982731,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that snapshots are kept for 30 days on the Business plan, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 898,
+        "output_tokens": 80,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q41",
+      "question": "What is the recovery time objective for restoring a volume?",
+      "reference": "30 minutes for volumes up to 1 TB.",
+      "answerable": true,
+      "answer": "The recovery time objective for restoring a volume is 30 minutes for volumes up to 1 TB.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.999878355498994,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the recovery time objective as 30 minutes for volumes up to 1 TB, which matches the reference answer in both fact and detail."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 892,
+        "output_tokens": 129,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q42",
+      "question": "Can a Team customer restore their database to a specific second?",
+      "reference": "No. Team restores to daily snapshots; point-in-time recovery needs Business or Enterprise.",
+      "answerable": true,
+      "answer": "No, a Team customer cannot restore their database to a specific second.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9944498672665623,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The reference answer states that Team customers can only restore to daily snapshots and that point-in-time recovery is available only for Business or Enterprise plans. The answer correctly states that Team customers cannot restore to a specific second, which aligns with the reference. The detail about daily snapshots and the requirement for Business or Enterprise for point-in-time recovery is not explicitly included in the answer, but the core fact—that Team does not support restoration to a specific second—is accurate and matches the reference."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 927,
+        "output_tokens": 161,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q43",
+      "question": "How fast does Priority support respond to a P1 issue?",
+      "reference": "Within 1 hour.",
+      "answerable": true,
+      "answer": "Priority support responds to a P1 issue in 1 hour.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9928965999935638,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the correct fact that Priority support responds to a P1 issue within 1 hour, matching the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 966,
+        "output_tokens": 78,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q44",
+      "question": "Is Thai-language support available?",
+      "reference": "Yes, on Priority and Premier during Asia-Pacific business hours.",
+      "answerable": true,
+      "answer": "Thai-language support is available during Asia-Pacific business hours for Priority and Premier tiers.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.999392450939571,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that Thai-language support is available during Asia-Pacific business hours for Priority and Premier tiers, which matches the reference answer in both facts and scope."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 992,
+        "output_tokens": 108,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q45",
+      "question": "How do I escalate a stuck ticket?",
+      "reference": "Reply with the word ESCALATE; a manager reviews it within one business day.",
+      "answerable": true,
+      "answer": "To escalate a stuck ticket, reply with the word ESCALATE.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9685773225590436,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the action (reply with the word ESCALATE) and aligns with the reference answer, even though it omits the detail about a manager reviewing it within one business day. The core instruction is accurate and complete in the context of the question."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 958,
+        "output_tokens": 132,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q46",
+      "question": "When does the v1 API stop working?",
+      "reference": "On 2026-12-31.",
+      "answerable": true,
+      "answer": "The v1 API stops working on 2026-12-31.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9994459274167156,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the same date as the reference answer, which is 2026-12-31."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 998,
+        "output_tokens": 108,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q47",
+      "question": "How many keys does object listing return per page now?",
+      "reference": "Up to 5,000.",
+      "answerable": true,
+      "answer": "Object listing now returns up to 5,000 keys per page.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9999178834247814,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that object listing returns up to 5,000 keys per page, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1241,
+        "output_tokens": 105,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q48",
+      "question": "What was the Business rate limit before v2.4?",
+      "reference": "4,000 requests per minute.",
+      "answerable": true,
+      "answer": "The Business rate limit before v2.4 was 4,000 requests per minute.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9976536775019593,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the fact from the reference answer: the Business rate limit before v2.4 was 4,000 requests per minute."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 959,
+        "output_tokens": 113,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q49",
+      "question": "Can I pay my invoice in Thai baht?",
+      "reference": "Yes: invoices can be in US dollars, euros, or Thai baht.",
+      "answerable": true,
+      "answer": "Yes, you can pay your invoice in Thai baht.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9984788210229852,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that payment in Thai baht is possible, which aligns with the reference answer that invoices can be in Thai baht."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 952,
+        "output_tokens": 94,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q50",
+      "question": "When is an unpaid organization suspended?",
+      "reference": "When an invoice is still unpaid 30 days after its due date.",
+      "answerable": true,
+      "answer": "An unpaid organization is suspended 30 days after its due date.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.996048265626488,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "incorrect",
+        "reason": "The reference answer specifies that suspension occurs when an invoice is still unpaid 30 days after its due date. The answer incorrectly generalizes 'an unpaid organization' instead of 'an invoice,' which is a factual inaccuracy. Organizations are not suspended based on unpaid status; invoices are. Thus, the answer misrepresents the condition and context."
+      },
+      "passed": false,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 921,
+        "output_tokens": 154,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q51",
+      "question": "Can I get my money back for an annual plan?",
+      "reference": "In full within 14 days of purchase, if under 10 GB of egress was used.",
+      "answerable": true,
+      "answer": "You can get a refund for an annual plan only if you request it within 14 days of purchase and the account has used less than 10 GB of egress.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9923603391392487,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the conditions for a refund: requesting it within 14 days of purchase and using less than 10 GB of egress. This matches the reference answer in both timing and usage conditions."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 959,
+        "output_tokens": 169,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q52",
+      "question": "Do you accept bitcoin?",
+      "reference": "No, cryptocurrency isn't accepted.",
+      "answerable": true,
+      "answer": "No, you do not accept bitcoin or any cryptocurrency.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.02008923592935466,
+        "abstained": false,
+        "hallucination_risk": "medium",
+        "warnings": [
+          "low retrieval confidence (0.02): your documents may not cover this"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that bitcoin and any cryptocurrency are not accepted, which aligns with the reference answer that cryptocurrency isn't accepted. The additional detail about 'any cryptocurrency' is consistent with the reference and does not introduce inaccuracies."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 988,
+        "output_tokens": 100,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q53",
+      "question": "Am I allowed to mine crypto on Larkspur?",
+      "reference": "No, it's prohibited.",
+      "answerable": true,
+      "answer": "No, you are not allowed to mine cryptocurrency on Larkspur Cloud.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 1,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9983662733132693,
+        "abstained": false,
+        "hallucination_risk": "high",
+        "warnings": [
+          "1 citation(s) quote text that is not in the cited source"
+        ]
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The reference answer states that mining is prohibited on Larkspur, and the provided answer correctly conveys that mining cryptocurrency is not allowed on Larkspur Cloud, which aligns with the reference. The answer accurately reflects the prohibition without adding unsupported details."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 932,
+        "output_tokens": 127,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q54",
+      "question": "How much egress triggers a review of a public bucket?",
+      "reference": "More than 50 TB in a month.",
+      "answerable": true,
+      "answer": "A public bucket triggers a review if it serves more than 50 TB of egress in a month.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9944986050855367,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that a public bucket triggers a review if it serves more than 50 TB of egress in a month, which matches the reference answer in both fact and detail."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1164,
+        "output_tokens": 133,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q55",
+      "question": "How long did the August 2025 Bangkok outage last?",
+      "reference": "47 minutes, from 02:13 to 03:00 UTC.",
+      "answerable": true,
+      "answer": "The August 2025 Bangkok outage lasted 47 minutes, from 02:13 to 03:00 UTC.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9994152210705199,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states the duration and time frame of the outage as specified in the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1223,
+        "output_tokens": 104,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q56",
+      "question": "What caused the ap-bangkok-1 outage?",
+      "reference": "An expired TLS certificate on an internal load balancer.",
+      "answerable": true,
+      "answer": "The ap-bangkok-1 outage was caused by an expired TLS certificate on an internal load balancer, which had been manually issued at launch and not covered by an automated renewal system.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9997657114312967,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer includes the correct cause—expired TLS certificate on an internal load balancer—and adds relevant context about manual issuance and lack of automated renewal, which is consistent with the reference answer. The factual content is fully accurate and supported."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1229,
+        "output_tokens": 191,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q57",
+      "question": "What reference should I use when asking support about the Bangkok incident?",
+      "reference": "INC-2025-0814.",
+      "answerable": true,
+      "answer": "Use the reference INC-2025-0814 when asking support about the Bangkok incident.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.8436472089712841,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly identifies the reference INC-2025-0814, which matches the reference answer, and states it appropriately in the context of asking support about the Bangkok incident."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1202,
+        "output_tokens": 122,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q58",
+      "question": "How long is data kept after an organization is closed?",
+      "reference": "60 days.",
+      "answerable": true,
+      "answer": "Data is retained for 60 days after an organization is closed.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9999259109024009,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the same fact as the reference answer: data is retained for 60 days after an organization is closed. There is no deviation or inaccuracy."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 942,
+        "output_tokens": 140,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q59",
+      "question": "How long can deleted data stay in internal backups?",
+      "reference": "Up to 35 days after deletion.",
+      "answerable": true,
+      "answer": "Deleted data can remain in internal backups for up to 35 days after deletion.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9999752970087669,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer accurately states the same fact as the reference answer: that deleted data can remain in internal backups for up to 35 days after deletion."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 985,
+        "output_tokens": 118,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q60",
+      "question": "How long do I have to restore a deleted bucket?",
+      "reference": "30 days (soft delete).",
+      "answerable": true,
+      "answer": "You have 30 days to restore a deleted bucket.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9996799089992481,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "partial",
+        "reason": "The reference answer specifies '30 days (soft delete)', indicating that the 30-day period applies to soft delete, a specific feature in AWS S3. The answer states '30 days to restore a deleted bucket' without mentioning soft delete, which is a key detail in the reference. While the duration is correct, the missing context about soft delete reduces accuracy."
+      },
+      "passed": false,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1002,
+        "output_tokens": 154,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q61",
+      "question": "How often is the status page updated during an incident?",
+      "reference": "At least every 30 minutes.",
+      "answerable": true,
+      "answer": "The status page is updated at least every 30 minutes during an incident.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.996368438077107,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that the status page is updated at least every 30 minutes during an incident, which matches the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1298,
+        "output_tokens": 95,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q62",
+      "question": "How are status webhooks signed?",
+      "reference": "With an HMAC-SHA256 signature in the X-Larkspur-Signature header.",
+      "answerable": true,
+      "answer": "Status webhooks are signed with an HMAC-SHA256 signature in the X-Larkspur-Signature header.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.985222328147795,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that status webhooks are signed with an HMAC-SHA256 signature in the X-Larkspur-Signature header, matching the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1276,
+        "output_tokens": 135,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q63",
+      "question": "How long are Larkspur's own request logs kept?",
+      "reference": "400 days.",
+      "answerable": true,
+      "answer": "Larkspur's own request logs are kept for 400 days.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.999935413522706,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer states the correct fact that Larkspur's request logs are kept for 400 days, which matches the reference answer exactly."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 928,
+        "output_tokens": 115,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q64",
+      "question": "Compare the Team and Business uptime commitments.",
+      "reference": "Team 99.9%, Business 99.95%.",
+      "answerable": true,
+      "answer": "The Team plan commits to 99.9% monthly availability, allowing about 43 minutes of downtime in a 30-day month before credits apply. The Business plan commits to 99.95% monthly availability, which is roughly 22 minutes of downtime in a 30-day month.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9873116733661431,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 2,
+      "grade": {
+        "verdict": "correct",
+        "reason": "The answer correctly states that Team has a 99.9% uptime commitment and Business has a 99.95% uptime commitment, and accurately calculates the corresponding downtime (43 minutes and 22 minutes respectively) based on a 30-day month. These details are consistent with the reference answer."
+      },
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 950,
+        "output_tokens": 262,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q65",
+      "question": "Does Larkspur offer GPU virtual machines for training models?",
+      "reference": null,
+      "answerable": false,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.051963767456765154,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 810,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q66",
+      "question": "What is the price of the Platinum plan?",
+      "reference": null,
+      "answerable": false,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.023643300649604553,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 976,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q67",
+      "question": "Does Larkspur have a region in India?",
+      "reference": null,
+      "answerable": false,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9681176627747785,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 1097,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q68",
+      "question": "What is the uptime SLA for the managed database add-on?",
+      "reference": null,
+      "answerable": false,
+      "answer": "The uptime SLA for the managed database add-on is not explicitly stated in the provided documents.",
+      "check": {
+        "grounded": 1,
+        "unsupported_claims": null,
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.8389360898003433,
+        "abstained": false,
+        "hallucination_risk": "low",
+        "warnings": null
+      },
+      "citations": 1,
+      "passed": false,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 732,
+        "output_tokens": 80,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q69",
+      "question": "Who is Larkspur's CEO?",
+      "reference": null,
+      "answerable": false,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.05498851067953624,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 693,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q70",
+      "question": "Which programming languages do the official SDKs support?",
+      "reference": null,
+      "answerable": false,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.15584626747537783,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 859,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    },
+    {
+      "id": "q71",
+      "question": "Is Larkspur HIPAA compliant?",
+      "reference": null,
+      "answerable": false,
+      "answer": "I couldn't find this in your documents.",
+      "check": {
+        "grounded": 0,
+        "unsupported_claims": [
+          "I couldn't find this in your documents."
+        ],
+        "unverified_quotes": 0,
+        "unsourced_numbers": null,
+        "retrieval_confidence": 0.9915028938329754,
+        "abstained": true,
+        "hallucination_risk": "low",
+        "warnings": [
+          "1 statement(s) have no citation"
+        ]
+      },
+      "citations": 0,
+      "passed": true,
+      "usage": {
+        "model": "ollama:qwen3:4b-instruct",
+        "input_tokens": 728,
+        "output_tokens": 24,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0
+      }
+    }
+  ]
+}

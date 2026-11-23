@@ -108,14 +108,52 @@ The checks are deterministic and cost nothing, so they run on every request, not
 
 ## Answer quality
 
-`make eval` runs the whole pipeline on all 71 questions and grades the answers. It needs a Claude API key, and it **hasn't been run yet** for this README, so there are no answer-quality numbers here. It reports:
+`make eval` runs the whole pipeline on all 71 questions and grades the answers. With Claude it needs an API key. It also runs on a local model (below), which is where this README's numbers come from. It reports:
 
 - **Accuracy** on the 64 answerable questions. Claude grades each answer against the reference as correct, partial or incorrect, using structured outputs so the verdict is machine-readable. Partial counts as half.
 - **False abstentions**: "couldn't find it" when the answer was in the documents.
 - **Correct abstentions** on the 7 unanswerable questions. Two of them are near-misses: GPU virtual machines (the docs only mention GPU image processing) and an SLA for the database add-on (the docs only cover the storage SLA).
 - **Citation precision** (quotes found verbatim in their source), **share of cited text**, and the **risk label distribution** from the validator.
 
-Results go to `eval/results/answers.md`, with every failure listed. That's about 140 API calls; at `claude-opus-5-5` list prices it should cost roughly $1-3, depending on how much the model thinks.
+Results go to `eval/results/answers.md`, with every failure listed. On Claude that's about 140 API calls; at `claude-opus-5-5` list prices it should cost roughly $1-3, depending on how much the model thinks. It has not been run on Claude.
+
+### A real run on a local model
+
+No Claude API key was available, so the eval ran on qwen3-4b (instruct) through [Ollama](https://ollama.com) on an Apple M1. The same model answered and graded:
+
+```bash
+./bin/ragd eval -model ollama:qwen3:4b-instruct -judge-model ollama:qwen3:4b-instruct
+```
+
+Ollama's Anthropic-compatible API rejects `search_result` blocks, so [`internal/localllm`](internal/localllm/localllm.go) emulates citations:
+
+1. The retrieved chunks go into the prompt as numbered sources.
+2. The model answers in JSON segments, each with the source numbers it used and a quote from each.
+3. The adapter rebuilds those as Claude-style `search_result_location` citations.
+
+The quote checks, the number checks and the risk labels then run unchanged. Full results are in [`eval/results/answers.md`](eval/results/answers.md).
+
+| Metric | qwen3-4b, local |
+|---|---|
+| Accuracy on 64 answerable questions (partial = 0.5) | 94% |
+| Said "not found" when the answer was there | 1 |
+| Correctly declined unanswerable questions | 6 of 7 |
+| Citation quotes found verbatim in their source | 92% |
+| Mean share of answer text with a citation | 90% |
+| Hallucination risk labels (low / medium / high) | 62 / 3 / 6 |
+| Tokens (answers and grading) | 81,031; local, so no cost |
+
+What the run shows:
+
+- **The checks catch errors a citation can't.** For q11 ("What credit do I get if availability drops to 97%?") the model decided 97% is "below 95.0%" and picked the wrong credit tier. Its citation was genuine. The validator labelled it high risk, because "97" appears in no source. q05's answer was also labelled high risk, for a quote that isn't in its source.
+- **Paraphrased quotes are the main citation failure.** Five answers (q05, q13, q15, q16, q53) cited text that isn't word for word in the cited chunk, and four of them were still right. Labelling those high risk is correct: the answer may be fine, but its evidence can't be verified.
+- **Medium risk came from retrieval, not the answer.** The three medium-risk answers (q28, q38, q52) were correct; they were flagged because retrieval confidence was low (0.02-0.11).
+- **The judge has limits here too.**
+  - It is the same model that answered.
+  - It failed q50 ("an unpaid organization is suspended 30 days after its due date") over wording.
+  - On q60 it explained "soft delete" as "a specific feature in AWS S3", although the company in the corpus is fictional.
+- **The abstention rule is strict.** The one "answered" unanswerable question, q68, was answered with "The uptime SLA for the managed database add-on is not explicitly stated in the provided documents." That's a decline in meaning, but the eval looks for the exact not-found sentence.
+- **The first run found an adapter bug.** When the model had nothing to cite, it returned an empty list of segments, and the adapter passed `{"segments": []}` through as the answer, so 0 of 7 declines were recognised. The schema now requires at least one segment, and the model writes the not-found sentence itself. That gave 6 of 7, with accuracy and citation precision unchanged.
 
 LLM-as-judge has known limits. The judge can be lenient with hedged answers, it never sees the source documents (only the reference answer), and a judge from the same model family may share its blind spots. The deterministic checks (abstentions, citation precision, unsourced numbers) don't depend on the judge, which is why they are reported separately.
 
@@ -129,6 +167,8 @@ docker compose up --build   # then open http://localhost:3000
 ```
 
 Without an API key, set `RAG_ANSWER_MODE=extractive`. Answers are then the best-matching source sentence, cited, with no model call.
+
+**Local model, no API key:** answers can come from a model served by Ollama. Set `RAG_MODEL=ollama:qwen3:4b-instruct` (and `OLLAMA_HOST` if it isn't on `127.0.0.1:11434`), and `ragd serve` and `ragd eval` route those calls through `internal/localllm`.
 
 **Locally:**
 
@@ -182,7 +222,7 @@ Errors are `{"error": "..."}`. 429 responses carry `Retry-After`, and a used-up 
 make test          # unit tests: parsers, chunking, citation checks, eval logic
 make integration   # API end to end against real Qdrant and embeddings (Claude is faked)
 make ablation      # retrieval study, no LLM calls
-make eval          # answer quality, calls the Claude API
+make eval          # answer quality, calls the Claude API (or: ./bin/ragd eval -model ollama:<name> -judge-model ollama:<name>)
 ```
 
 The integration test covers sign-up, login, upload and indexing, a cited answer, isolation between users, admin-only routes, budget enforcement, rate limiting, feedback and deletion.
@@ -190,6 +230,7 @@ The integration test covers sign-up, login, upload and indexing, a cited answer,
 ## Model providers and licenses
 
 - Answers: Anthropic Claude through the official Go SDK, `claude-opus-5-5` by default, with server-side refusal fallbacks on. Usage is billed to your Anthropic account under Anthropic's commercial terms.
+- Local answers (optional): any model served by [Ollama](https://ollama.com) (MIT), through `internal/localllm`. The eval above used qwen3-4b instruct (Apache 2.0); Ollama downloads the weights, and they aren't part of this repository.
 - Embeddings: [`BAAI/bge-small-en-v1.5`](https://huggingface.co/BAAI/bge-small-en-v1.5) (MIT). Reranker: [`cross-encoder/ms-marco-MiniLM-L-6-v2`](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache 2.0). Both run locally on CPU.
 - The evaluation corpus describes a fictional company, Larkspur Cloud, and was written for this project.
 
@@ -206,4 +247,5 @@ The integration test covers sign-up, login, upload and indexing, a cited answer,
 - **Check run-to-run variance before trusting a 2-point gain.** Repeated runs first differed by up to 4 points of Hit@1, which is bigger than several of the effects being measured.
 - **A reranker is not strictly better.** It raised Hit@1 by 21 points but also pushed one correct answer out of the top 10. It only sees the question and the passage, so it can't bridge a synonym the documents never use.
 - **Structure matters more than size.** On documents with short sections, heading boundaries and keeping table rows with their header did more than any size setting.
+- **A missing answer isn't an abstention.** The first local eval reported 0 of 7 correct declines. The model had declined, by returning no answer segments, but nothing counted an empty answer as "not found". A schema that requires at least one segment turned the same behaviour into 6 of 7. A metric that can only see one way of saying no will miss the others.
 - **Deterministic checks are worth running on every answer.** Verifying quotes and numbers costs nothing and catches the failures users notice most: a confident answer with a wrong figure.
