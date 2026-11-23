@@ -67,6 +67,9 @@ func IndexCorpus(ctx context.Context, r *retrieve.Retriever, docs map[string]*pa
 		}
 		chunks += got
 	}
+	if err := r.Store.WaitReady(ctx, r.Collection); err != nil {
+		return 0, 0, err
+	}
 	return chunks, float64(tokens) / float64(max(chunks, 1)), nil
 }
 

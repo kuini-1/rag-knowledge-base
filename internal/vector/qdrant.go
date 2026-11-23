@@ -50,26 +50,40 @@ type Hit struct {
 	Payload Payload `json:"payload"`
 }
 
+// do sends one request. Connection errors are retried (up to three tries
+// with backoff): every call this package makes is idempotent, including
+// upserts, which use deterministic point ids.
 func (q *Qdrant) do(ctx context.Context, method, path string, in, out any) error {
-	var body io.Reader
+	var payload []byte
 	if in != nil {
 		b, err := json.Marshal(in)
 		if err != nil {
 			return err
 		}
-		body = bytes.NewReader(b)
+		payload = b
 	}
-	req, err := http.NewRequestWithContext(ctx, method, q.BaseURL+path, body)
-	if err != nil {
-		return err
-	}
-	req.Header.Set("Content-Type", "application/json")
-	if q.APIKey != "" {
-		req.Header.Set("api-key", q.APIKey)
-	}
-	resp, err := q.HTTP.Do(req)
-	if err != nil {
-		return fmt.Errorf("qdrant: %w", err)
+	var resp *http.Response
+	for attempt := 0; ; attempt++ {
+		var body io.Reader
+		if payload != nil {
+			body = bytes.NewReader(payload)
+		}
+		req, err := http.NewRequestWithContext(ctx, method, q.BaseURL+path, body)
+		if err != nil {
+			return err
+		}
+		req.Header.Set("Content-Type", "application/json")
+		if q.APIKey != "" {
+			req.Header.Set("api-key", q.APIKey)
+		}
+		resp, err = q.HTTP.Do(req)
+		if err == nil {
+			break
+		}
+		if attempt == 2 || ctx.Err() != nil {
+			return fmt.Errorf("qdrant: %w", err)
+		}
+		time.Sleep(time.Duration(200*(attempt+1)) * time.Millisecond)
 	}
 	defer resp.Body.Close()
 	raw, _ := io.ReadAll(io.LimitReader(resp.Body, 32<<20))
@@ -120,6 +134,28 @@ func (q *Qdrant) EnsureCollection(ctx context.Context, name string, dim int) err
 		}
 	}
 	return nil
+}
+
+// WaitReady blocks until the collection reports status "green", i.e. its
+// indexes and the statistics the sparse IDF weighting uses are up to date.
+// Benchmarks call it after bulk loading so results don't depend on timing.
+func (q *Qdrant) WaitReady(ctx context.Context, name string) error {
+	for {
+		var info struct {
+			Status string `json:"status"`
+		}
+		if err := q.do(ctx, http.MethodGet, "/collections/"+name, nil, &info); err != nil {
+			return err
+		}
+		if info.Status == "green" {
+			return nil
+		}
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-time.After(250 * time.Millisecond):
+		}
+	}
 }
 
 func (q *Qdrant) DeleteCollection(ctx context.Context, name string) error {
