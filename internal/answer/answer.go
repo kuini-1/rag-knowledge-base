@@ -105,6 +105,9 @@ var ErrRefused = errors.New("the model declined to answer")
 
 // Answer generates and checks an answer from already-retrieved sources.
 func (a *Answerer) Answer(ctx context.Context, question string, sources []retrieve.Result) (*Answer, error) {
+	if a.LLM == nil {
+		return Extractive(question, sources, a.Cfg.MinConfidence), nil
+	}
 	content := make([]anthropic.BetaContentBlockParamUnion, 0, len(sources)+1)
 	for _, s := range sources {
 		block := anthropic.NewBetaSearchResultBlock(

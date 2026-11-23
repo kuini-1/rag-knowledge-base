@@ -28,11 +28,12 @@ import (
 )
 
 type common struct {
-	dataDir   string
-	embedURL  string
-	qdrantURL string
-	model     string
-	effort    string
+	dataDir    string
+	embedURL   string
+	qdrantURL  string
+	model      string
+	effort     string
+	extractive bool
 }
 
 func (c *common) register(fs *flag.FlagSet) {
@@ -41,6 +42,8 @@ func (c *common) register(fs *flag.FlagSet) {
 	fs.StringVar(&c.qdrantURL, "qdrant-url", env("RAG_QDRANT_URL", "http://127.0.0.1:6333"), "Qdrant URL")
 	fs.StringVar(&c.model, "model", env("RAG_MODEL", answer.DefaultConfig.Model), "Claude model for answers")
 	fs.StringVar(&c.effort, "effort", env("RAG_EFFORT", answer.DefaultConfig.Effort), "effort: low, medium, high")
+	fs.BoolVar(&c.extractive, "extractive", env("RAG_ANSWER_MODE", "") == "extractive",
+		"answer without a model: quote the best-matching source sentence (no API key needed)")
 }
 
 func (c *common) openStore() (*store.Store, error) {
@@ -53,6 +56,11 @@ func (c *common) openStore() (*store.Store, error) {
 func (c *common) answerer() *answer.Answerer {
 	cfg := answer.DefaultConfig
 	cfg.Model, cfg.Effort = c.model, c.effort
+	if c.extractive {
+		// No model: answers are the best-matching source sentence, cited.
+		cfg.Model = "extractive"
+		return &answer.Answerer{Cfg: cfg}
+	}
 	// Credentials come from ANTHROPIC_API_KEY (or an `ant auth login` profile).
 	return &answer.Answerer{LLM: answer.SDKClient{Client: anthropic.NewClient()}, Cfg: cfg}
 }
