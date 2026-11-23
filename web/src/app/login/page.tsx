@@ -1,11 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api, saveSession } from "@/lib/api";
+import { useSession } from "@/lib/session";
 
 export default function LoginPage() {
   const router = useRouter();
+  const session = useSession();
+  useEffect(() => {
+    if (session) router.replace("/ask");
+  }, [session, router]);
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

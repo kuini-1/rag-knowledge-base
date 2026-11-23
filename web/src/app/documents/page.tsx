@@ -86,8 +86,8 @@ export default function DocumentsPage() {
                 <th className="px-4 py-2 font-medium">Name</th>
                 <th className="px-4 py-2 font-medium">Status</th>
                 <th className="px-4 py-2 text-right font-medium">Passages</th>
-                <th className="px-4 py-2 text-right font-medium">Size</th>
-                <th className="px-4 py-2 font-medium">Added</th>
+                <th className="hidden px-4 py-2 text-right font-medium sm:table-cell">Size</th>
+                <th className="hidden px-4 py-2 font-medium sm:table-cell">Added</th>
                 <th className="px-4 py-2" />
               </tr>
             </thead>
@@ -100,8 +100,8 @@ export default function DocumentsPage() {
                   </td>
                   <td className="px-4 py-2.5"><Status s={d.status} /></td>
                   <td className="px-4 py-2.5 text-right tabular-nums">{d.status === "ready" ? d.chunks : "–"}</td>
-                  <td className="px-4 py-2.5 text-right tabular-nums text-muted">{fmtBytes(d.size)}</td>
-                  <td className="px-4 py-2.5 text-muted">{new Date(d.created_at).toLocaleDateString()}</td>
+                  <td className="hidden px-4 py-2.5 text-right tabular-nums text-muted sm:table-cell">{fmtBytes(d.size)}</td>
+                  <td className="hidden px-4 py-2.5 text-muted sm:table-cell">{new Date(d.created_at).toLocaleDateString()}</td>
                   <td className="px-4 py-2.5 text-right">
                     <button className="text-xs text-bad hover:underline" onClick={() => remove(d)}>Delete</button>
                   </td>
