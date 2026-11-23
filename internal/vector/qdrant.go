@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sort"
 	"time"
 
 	"github.com/kuini-1/rag-knowledge-base/internal/embed"
@@ -203,21 +204,22 @@ func ownerDocFilter(owner, docID string) map[string]any {
 // sparse results with reciprocal rank fusion. Results are always limited to
 // one owner's documents.
 func (q *Qdrant) Search(ctx context.Context, collection, owner string, dense []float32, sparse *embed.Sparse, limit int) ([]Hit, error) {
-	filter := ownerDocFilter(owner, "")
-	var body map[string]any
-	if sparse == nil {
-		body = map[string]any{"query": dense, "using": "dense", "limit": limit, "filter": filter, "with_payload": true}
-	} else {
-		body = map[string]any{
-			"prefetch": []map[string]any{
-				{"query": dense, "using": "dense", "limit": limit * 2, "filter": filter},
-				{"query": sparse, "using": "sparse", "limit": limit * 2, "filter": filter},
-			},
-			"query":        map[string]any{"fusion": "rrf"},
-			"limit":        limit,
-			"with_payload": true,
+	denseHits, err := q.query(ctx, collection, owner, dense, "dense", limit*2)
+	if err != nil || sparse == nil {
+		if len(denseHits) > limit {
+			denseHits = denseHits[:limit]
 		}
+		return denseHits, err
 	}
+	sparseHits, err := q.query(ctx, collection, owner, sparse, "sparse", limit*2)
+	if err != nil {
+		return nil, err
+	}
+	return FuseRRF(denseHits, sparseHits, limit), nil
+}
+
+func (q *Qdrant) query(ctx context.Context, collection, owner string, vec any, using string, limit int) ([]Hit, error) {
+	body := map[string]any{"query": vec, "using": using, "limit": limit, "filter": ownerDocFilter(owner, ""), "with_payload": true}
 	var res struct {
 		Points []Hit `json:"points"`
 	}
@@ -225,4 +227,55 @@ func (q *Qdrant) Search(ctx context.Context, collection, owner string, dense []f
 		return nil, err
 	}
 	return res.Points, nil
+}
+
+// rrfK is the usual reciprocal rank fusion constant: it damps the weight of
+// the very top ranks so one list can't dominate.
+const rrfK = 60
+
+// FuseRRF merges two ranked lists by reciprocal rank fusion. It runs here
+// rather than in Qdrant so that ties (common: a chunk ranked 3rd in one list
+// and 3rd in the other scores the same as its neighbour) break the same way
+// every time: by the better single rank, then by point id.
+func FuseRRF(a, b []Hit, limit int) []Hit {
+	type acc struct {
+		hit  Hit
+		rrf  float64
+		best int
+	}
+	byID := map[string]*acc{}
+	add := func(list []Hit) {
+		for i, h := range list {
+			rank := i + 1
+			e, ok := byID[h.ID]
+			if !ok {
+				e = &acc{hit: h, best: rank}
+				byID[h.ID] = e
+			}
+			e.rrf += 1 / float64(rrfK+rank)
+			e.best = min(e.best, rank)
+		}
+	}
+	add(a)
+	add(b)
+	out := make([]*acc, 0, len(byID))
+	for _, e := range byID {
+		out = append(out, e)
+	}
+	sort.Slice(out, func(i, j int) bool {
+		if out[i].rrf != out[j].rrf {
+			return out[i].rrf > out[j].rrf
+		}
+		if out[i].best != out[j].best {
+			return out[i].best < out[j].best
+		}
+		return out[i].hit.ID < out[j].hit.ID
+	})
+	hits := make([]Hit, 0, min(limit, len(out)))
+	for _, e := range out[:min(limit, len(out))] {
+		h := e.hit
+		h.Score = e.rrf
+		hits = append(hits, h)
+	}
+	return hits
 }

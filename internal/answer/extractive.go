@@ -28,16 +28,27 @@ func Extractive(question string, sources []retrieve.Result, minConfidence float6
 		if j := strings.Index(body, "\n"); j >= 0 && strings.Contains(body[:j], " > ") {
 			body = body[j+1:] // skip the context header
 		}
-		var sents []string
-		for _, sent := range sentenceRe.FindAllString(body, -1) {
-			if sent = strings.TrimSpace(strings.TrimLeft(strings.TrimSpace(sent), "-*• ")); len(sent) >= 3 {
-				sents = append(sents, sent)
+		// Sentence or line boundaries, as byte ranges, so every candidate is
+		// an exact span of the source (the quote must match it verbatim).
+		var spans [][2]int
+		for _, m := range sentenceRe.FindAllStringIndex(body, -1) {
+			start, end := m[0], m[1]
+			for start < end && strings.ContainsRune(" \t-*•", rune(body[start])) {
+				start++
+			}
+			for end > start && (body[end-1] == ' ' || body[end-1] == '\t') {
+				end--
+			}
+			if end-start >= 3 {
+				spans = append(spans, [2]int{start, end})
 			}
 		}
-		// Candidates are single sentences and pairs of neighbours, since a
-		// fact is often split ("Snapshots run daily. Business: 30 days.").
-		for j := range sents {
-			for _, cand := range []string{sents[j], strings.Join(sents[j:min(j+2, len(sents))], " ")} {
+		// Candidates are windows of one to three neighbouring sentences or
+		// lines, since a fact is often split across them ("Retention depends
+		// on the plan:" followed by "Business: 30 days").
+		for j := range spans {
+			for k := 1; k <= 3 && j+k <= len(spans); k++ {
+				cand := body[spans[j][0]:spans[j+k-1][1]]
 				if len(cand) < 12 {
 					continue
 				}
