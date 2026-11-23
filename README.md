@@ -8,6 +8,8 @@ Go API, Next.js frontend, Qdrant for vectors, sentence-transformers for embeddin
 
 ![Answer with citations linked to highlighted source passages](docs/ask.jpg)
 
+*Screenshot in extractive mode (no model call), which quotes the best-matching source lines. With Claude, the answer is written as prose and each claim carries its own citation.*
+
 **Live demo:** not deployed yet (see [Running it](#running-it)).
 
 ## What it does
