@@ -76,7 +76,9 @@ func TestAPI(t *testing.T) {
 		Tokens:   auth.Tokens{Secret: []byte(strings.Repeat("k", 32)), TTL: time.Hour},
 		Chunking: chunk.Default, Retrieval: retrieve.DefaultOptions, FilesDir: filepath.Join(dir, "files"),
 		AllowSignup: true, DefaultBudget: 2000,
-		AskLimit: auth.NewLimiter(600, 3), LoginLimit: auth.NewLimiter(600, 50),
+		// Slow refill (one ask per 10 s) so slow requests can't refill the
+		// bucket during the rate-limit check; burst 4 covers Ana's asks.
+		AskLimit: auth.NewLimiter(6, 4), LoginLimit: auth.NewLimiter(600, 50),
 	}
 	ts := httptest.NewServer(srv.Handler())
 	defer ts.Close()
@@ -179,7 +181,7 @@ func TestAPI(t *testing.T) {
 		t.Fatalf("budget not enforced: %d %s", code, e.Error)
 	}
 
-	// Rate limit (burst 3): rapid asks from Bob get 429 with Retry-After.
+	// Rate limit (burst 4): rapid asks from Bob get 429 with Retry-After.
 	limited := false
 	for i := 0; i < 6; i++ {
 		if call("POST", "/api/ask", bob.Token, askReq{"hello?"}, nil) == 429 {
