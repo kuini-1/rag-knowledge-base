@@ -1,0 +1,14 @@
+/bin/
+/data/
+*.db
+*.db-wal
+*.db-shm
+.env
+embedder/.venv/
+__pycache__/
+web/node_modules/
+web/.next/
+web/out/
+web/next-env.d.ts
+*.tsbuildinfo
+.DS_Store
